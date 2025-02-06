@@ -1,10 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  CreateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Building } from './building.entity';
 import { Audit } from './audit.entity';
 import { RoomType } from 'src/shared/enums';
@@ -23,9 +17,6 @@ export class Room extends Audit {
   @Column()
   floorNumber: number;
 
-  @Column({ type: 'enum', enum: RoomType }) // Default RoomType
+  @Column({ type: 'enum', enum: RoomType })
   roomType: RoomType;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }

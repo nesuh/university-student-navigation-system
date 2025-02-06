@@ -1,6 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, IsUUID, IsEnum } from 'class-validator';
-import { RoomType } from 'src/shared/enums'; 
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+  IsEnum,
+} from 'class-validator';
+import { RoomType } from 'src/shared/enums';
 
 export class CreateRoomDto {
   @ApiProperty({ description: 'Name of the room' })

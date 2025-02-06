@@ -18,7 +18,11 @@ export class CreateUserDto {
   @IsString()
   password: string;
 
-  @ApiProperty({ description: 'Role of the user', enum: UserRole, default: UserRole.Student })
+  @ApiProperty({
+    description: 'Role of the user',
+    enum: UserRole,
+    default: UserRole.User,
+  })
   @IsEnum(UserRole)
   role: UserRole;
 }
@@ -43,7 +47,11 @@ export class UpdateUserDto {
   @IsNotEmpty()
   password: string;
 
-  @ApiProperty({ description: 'Role of the user', enum: UserRole, default: UserRole.Student })
+  @ApiProperty({
+    description: 'Role of the user',
+    enum: UserRole,
+    default: UserRole.User,
+  })
   @IsEnum(UserRole)
   role: UserRole;
 }

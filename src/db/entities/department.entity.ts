@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
-import { User } from './user.entity';
+import { Users } from './users.entity';
 import { Building } from './building.entity';
 
 @Entity()
@@ -11,8 +11,8 @@ export class Departments extends Audit {
   @Column({ unique: true })
   name: string;
 
-  @ManyToOne(() => User)
-  headOfDepartment: User;
+  @ManyToOne(() => Users)
+  headOfDepartment: Users;
 
   @ManyToOne(() => Building)
   building: Building;

@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUUID, IsNumber, IsOptional } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateNavigationDto {
   @ApiProperty({ description: 'ID of the building the navigation starts from' })
