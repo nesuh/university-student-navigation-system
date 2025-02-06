@@ -29,8 +29,12 @@
 ## Project setup
 
 ```bash
-$ npm install
+$ pnpm install
 ```
+# after that please run migration
+npm run migration:generate  --name="init"
+
+# after that 
 
 ## Compile and run the project
 
