@@ -6,8 +6,8 @@ export const TypeOrmConfigHelper = {
   DATABASE_HOST: process.env.DATABASE_HOST ?? 'localhost',
   DATABASE_PORT: process.env.DATABASE_PORT ?? '5432',
   DATABASE_NAME: process.env.DATABASE_NAME ?? 'sns',
-  DATABASE_USER: process.env.DATABASE_USER ?? 'postgres',
-  DATABASE_PASSWORD: process.env.DATABASE_PASSWORD ?? 'root',
+  DATABASE_USER: process.env.DATABASE_USER ?? 'test',
+  DATABASE_PASSWORD: process.env.DATABASE_PASSWORD ?? '0000',
 };
 
 const pathPrefix = process.env.NODE_ENV === 'development' ? 'src/' : 'dist/';
