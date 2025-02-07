@@ -4,7 +4,7 @@ import { BuildingType } from 'src/shared/enums';
 import { Classes } from './class.entity';
 import { Registration } from './registration.entity';
 
-@Entity()
+@Entity('building')
 export class Building extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

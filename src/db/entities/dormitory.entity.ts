@@ -3,7 +3,7 @@ import { DormitoryType } from 'src/shared/enums/dormitory-type.enum';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
 
-@Entity()
+@Entity('dormitory')
 export class Dormitory extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

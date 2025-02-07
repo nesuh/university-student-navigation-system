@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Audit } from './audit.entity';
 import { UserRole } from 'src/shared/enums';
 import { Departments } from './department.entity';
-@Entity()
+@Entity('users')
 export class Users extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
