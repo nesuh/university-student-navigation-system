@@ -3,7 +3,7 @@ import { Users } from './users.entity';
 import { Building } from './building.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('hall')
 export class Hall extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

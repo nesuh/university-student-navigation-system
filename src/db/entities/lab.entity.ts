@@ -4,7 +4,7 @@ import { Users } from './users.entity';
 import { Building } from './building.entity';
 import { Room } from './room.entity';
 
-@Entity()
+@Entity('lab')
 export class Lab extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

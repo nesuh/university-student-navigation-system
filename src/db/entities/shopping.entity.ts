@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
 
-@Entity()
+@Entity('shopping')
 export class Shopping extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

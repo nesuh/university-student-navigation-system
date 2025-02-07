@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Building } from './building.entity';
 import { Audit } from './audit.entity';
-@Entity()
+@Entity('classes')
 export class Classes extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

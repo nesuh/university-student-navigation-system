@@ -3,7 +3,7 @@ import { Building } from './building.entity';
 import { Audit } from './audit.entity';
 import { RoomType } from 'src/shared/enums';
 
-@Entity()
+@Entity('room')
 export class Room extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

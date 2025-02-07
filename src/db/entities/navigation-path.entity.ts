@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
 import { Building } from './building.entity';
 
-@Entity()
+@Entity('navigation_path')
 export class NavigationPath extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
