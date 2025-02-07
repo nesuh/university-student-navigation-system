@@ -6,7 +6,7 @@ export const TypeOrmConfigHelper = {
   DATABASE_HOST: process.env.DATABASE_HOST ?? 'localhost',
   DATABASE_PORT: process.env.DATABASE_PORT ?? '5432',
   DATABASE_NAME: process.env.DATABASE_NAME ?? 'sns',
-  DATABASE_USER: process.env.DATABASE_USER ?? 'test',
+  DATABASE_USER: process.env.DATABASE_USER ?? 'postgres',
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD ?? '0000',
 };
 
@@ -18,7 +18,7 @@ export const dataSourceOptions = {
   database: TypeOrmConfigHelper.DATABASE_NAME,
   username: TypeOrmConfigHelper.DATABASE_USER,
   password: TypeOrmConfigHelper.DATABASE_PASSWORD,
-  entities: ['src/**/*.entity.{ts,js}'],
+  entities: ['src/db/**/*.entity.{ts,js}'],
   subscribers: [`${pathPrefix}**/subscribers/*.subscribers.{ts,js}`],
   migrations: ['src/db/migrations/*.{ts,js}'], // Look in `src/migrations` during development
   migrationsRun: true,

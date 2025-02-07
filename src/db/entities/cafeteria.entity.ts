@@ -11,7 +11,7 @@ import { Building } from './building.entity';
 import { Room } from './room.entity';
 import { CafeteriaType } from 'src/shared/enums/cafeteria_type.enum';
 
-@Entity()
+@Entity('cafeteria')
 export class Cafeteria extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

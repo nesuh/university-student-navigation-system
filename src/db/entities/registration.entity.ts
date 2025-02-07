@@ -9,7 +9,7 @@ import {
 import { Audit } from './audit.entity';
 import { Building } from './building.entity';
 import { Field } from './fields.entity';
-@Entity()
+@Entity('registration')
 export class Registration extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;

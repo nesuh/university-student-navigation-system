@@ -33,7 +33,6 @@ export class AllExceptionFilter implements ExceptionFilter {
     const responseBody = {
       statusCode: httpStatus,
       timeStamp: new Date().toISOString(),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       path: httpAdapter.getRequestUrl(ctx.getRequest()),
       message:
         (exceptionResponse as HttpExceptionResponse)?.message ||
