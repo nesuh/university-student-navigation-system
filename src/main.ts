@@ -2,12 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { TransformationInterceptor } from './shared/exception/responseInterceptor';
+import { GlobalExceptionFilter } from './shared/exception';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalInterceptors(new TransformationInterceptor());
+  app.useGlobalFilters(new GlobalExceptionFilter());
   // app.enableCors() =true
   const config = new DocumentBuilder()
     .setTitle('DMU Navigation System API')

@@ -1,47 +1,42 @@
 import {
-  ArgumentsHost,
   ExceptionFilter,
-  HttpStatus,
+  Catch,
+  ArgumentsHost,
   HttpException,
+  HttpStatus,
+  Logger,
 } from '@nestjs/common';
-import { HttpAdapterHost } from '@nestjs/core';
 
-export interface HttpExceptionResponse {
-  statusCode: number;
-  message: string;
-  error: string;
-}
-
-export class AllExceptionFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
-
-  catch(exception: any, host: ArgumentsHost): void {
-    const { httpAdapter } = this.httpAdapterHost;
+@Catch()
+export class GlobalExceptionFilter implements ExceptionFilter {
+  private readonly logger = new Logger(GlobalExceptionFilter.name);
+  catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    const request = ctx.getRequest();
 
-    const httpStatus =
+    const status =
       exception instanceof HttpException
         ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+        : HttpStatus.BAD_REQUEST;
 
-    console.log('exception :: ==>', exception);
+    let message =
+      exception instanceof HttpException
+        ? (exception.getResponse() as any)['message']
+        : (exception as Error).message;
 
-    // Extract exception response if it exists
-    const exceptionResponse =
-      exception instanceof HttpException ? exception.getResponse() : null;
+    if (!message && exception.message) {
+      message = exception.message;
+    }
 
     const responseBody = {
-      statusCode: httpStatus,
-      timeStamp: new Date().toISOString(),
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      path: httpAdapter.getRequestUrl(ctx.getRequest()),
-      message:
-        (exceptionResponse as HttpExceptionResponse)?.message ||
-        (exceptionResponse as HttpExceptionResponse)?.error ||
-        'Something went wrong!',
-      errorResponse: exceptionResponse as HttpExceptionResponse,
+      statusCode: status,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      message,
+      exception: exception,
     };
-
-    httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
+    this.logger.error(responseBody);
+    response.status(status).json(responseBody);
   }
 }
