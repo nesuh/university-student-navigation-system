@@ -1,11 +1,22 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import {IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
 export class CreateRegistrationDto {
   @ApiProperty({ description: 'Name of the registration' })
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  
+  @ApiProperty({ description: 'email of registration' })
+  @IsNotEmpty()
+  @IsString()
+  email: string;
+
+  @ApiProperty({ description: 'Phone Number of registration' })
+  @IsNotEmpty()
+  @IsString()
+  phoneNumber: string;
 
   @ApiProperty({
     description: 'ID of the building the registration is associated with',
@@ -15,18 +26,20 @@ export class CreateRegistrationDto {
 
   @ApiProperty({ description: 'Operational time of the registration' })
   @IsNotEmpty()
-  operationalTime: { open: string; closing: string };
-
-  @ApiProperty({ description: 'Type of registration' })
-  @IsNotEmpty()
-  @IsString()
-  type: string;
+  operationalTime: {    morning: {
+    opening: string;
+    closing: string;
+  },
+  afternoon: {
+    opening: string;
+    closing: string;
+  } };
 
   @ApiProperty({
-    description: 'ID of the field associated with the registration',
+    description: 'Registrar or HeadOfDepartment  of the field associated with the registration',
   })
-  @IsUUID()
-  fieldId: string;
+  @IsString()
+ role:string
 }
 
 export class UpdateRegistrationDto extends CreateRegistrationDto {

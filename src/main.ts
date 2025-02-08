@@ -3,9 +3,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './shared/exception';
-
+import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  
+  const app: NestExpressApplication = await NestFactory.create(AppModule, {
+    cors: true,
+  });
 
   app.useGlobalFilters(new GlobalExceptionFilter());
   // app.enableCors() =true

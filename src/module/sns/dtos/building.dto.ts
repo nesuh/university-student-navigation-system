@@ -29,10 +29,6 @@ export class CreateBuildingDto {
   @IsString()
   description: string;
 
-  @ApiProperty({ description: 'Address of the building', required: false })
-  @IsOptional()
-  @IsString()
-  address?: string;
 }
 
 export class UpdateBuildingDto extends CreateBuildingDto {

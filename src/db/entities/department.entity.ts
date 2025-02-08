@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
-import { Users } from './users.entity';
 import { Building } from './building.entity';
 import { Faculty } from './faculty.entity';
 import { Field } from './fields.entity';
