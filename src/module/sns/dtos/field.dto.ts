@@ -1,11 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsUUID } from 'class-validator';
-import { FieldType } from 'src/shared/enums/field-type.enum';
+import {IsString, IsUUID } from 'class-validator';
 
 export class CreateFieldsDto {
-  @ApiProperty({ description: 'Field name', enum: FieldType })
-  @IsEnum(FieldType)
-  name: FieldType;
+    @ApiProperty({ description: 'Name of the filed included in department like these in Software Engineering Department "Artificial Intelligence", "Cyber Security", "Finance"' })
+    @IsString()
+    name: string;
+  
+    @ApiProperty({ description: 'ID of the department Id' })
+    @IsUUID()
+    departmentId:string
 }
 
 export class UpdateFieldsDto extends CreateFieldsDto {

@@ -9,6 +9,7 @@ import {
 import { Audit } from './audit.entity';
 import { Building } from './building.entity';
 import { Field } from './fields.entity';
+import { RegistrationRole } from 'src/shared/enums/registration_role.enum';
 @Entity('registration')
 export class Registration extends Audit {
   @PrimaryGeneratedColumn('uuid')
@@ -16,6 +17,18 @@ export class Registration extends Audit {
 
   @Column()
   name: string;
+
+  @Column()
+  phoneNumber: number;
+
+  @Column()
+  email: string;
+
+  @Column({
+    type: 'enum',
+    enum:RegistrationRole
+  })
+  role:RegistrationRole
 
   @ManyToOne(() => Building, (building) => building.registrations)
   building: Building;
@@ -25,13 +38,13 @@ export class Registration extends Audit {
 
   @Column('json')
   operationalTime: {
-    open: string;
-    closing: string;
+    morning: {
+      opening: string;
+      closing: string;
+    },
+    afternoon: {
+      opening: string;
+      closing: string;
+    }
   };
-
-  @Column()
-  type: string;
-
-  @OneToOne(() => Field)
-  field: Field;
 }
