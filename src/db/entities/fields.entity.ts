@@ -1,8 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Departments } from "./department.entity";
+import { Audit } from "./audit.entity";
 
 @Entity('field')
-export class Field {
+export class Field extends Audit{
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

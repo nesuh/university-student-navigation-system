@@ -14,3 +14,5 @@ export * from './shopping.dto';
 export * from './class.dto';
 export * from './dormitory.dto';
 export * from './departement.dto';
+export * from './science-type.dto'
+export * from './faculty.dto'
