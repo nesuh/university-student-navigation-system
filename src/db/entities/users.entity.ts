@@ -19,6 +19,4 @@ export class Users extends Audit {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.User })
   role: UserRole;
 
-  @OneToMany(() => Departments, (department) => department.headOfDepartment)
-  departments: Departments[];
 }

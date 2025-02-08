@@ -1,4 +1,4 @@
-export enum FieldType {
-  Natural = 'Natural',
-  Social = 'Social',
+export enum ScienceType {
+  NaturalScience = 'Natural Science',
+  SocialScience = 'Social Science',
 }

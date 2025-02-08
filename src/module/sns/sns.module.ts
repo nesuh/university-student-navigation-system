@@ -12,6 +12,7 @@ import {
   Classes,
   Departments,
   Dormitory,
+  Faculty,
   Field,
   Hall,
   Lab,
@@ -19,6 +20,7 @@ import {
   Office,
   Parking,
   Registration,
+  ScienceType,
   Shopping,
 } from 'src/db/entities';
 import { Room } from 'src/db/entities/room.entity';
@@ -44,6 +46,10 @@ import { OfficeService } from './service/office.service';
 import { ParkingService } from './service/parking.service';
 import { RegistrationService } from './service/registration.service';
 import { ShoppingService } from './service/shopping.service';
+import { FacultyController } from './controller/faculty.controller';
+import { FacultyService } from './service/faculty.service';
+import { ScienceTypeController } from './controller/science-type.controller';
+import { ScienceTypeService } from './service/science-type.service';
 
 @Module({
   imports: [
@@ -62,6 +68,9 @@ import { ShoppingService } from './service/shopping.service';
       Parking,
       Registration,
       Shopping,
+      Faculty,
+      ScienceType,
+
     ]),
   ],
   controllers: [
@@ -79,6 +88,8 @@ import { ShoppingService } from './service/shopping.service';
     ParkingController,
     RegistrationController,
     ShoppingController,
+    FacultyController,
+    ScienceTypeController
   ],
   providers: [
     BuildingService,
@@ -95,6 +106,8 @@ import { ShoppingService } from './service/shopping.service';
     ParkingService,
     RegistrationService,
     ShoppingService,
+    FacultyService,
+    ScienceTypeService
   ],
   exports: [],
 })
