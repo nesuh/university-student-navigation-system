@@ -7,13 +7,6 @@ export class CreateDepartmentDto {
   @IsString()
   name: string;
 
-  @ApiProperty({
-    description: 'ID of the building where the department is located',
-  })
-  @IsUUID()
-  buildingId: string;
-
-
   @ApiProperty({ description: 'Faculty ID to which the department belongs' })
   @IsUUID()
   facultyId: string;
