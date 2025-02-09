@@ -18,7 +18,4 @@ export class Departments extends Audit {
 
   @OneToMany(() => Field, (field) => field.department)
   fields: Field[];
-
-  @ManyToOne(() => Building)
-  building: Building;
 }
