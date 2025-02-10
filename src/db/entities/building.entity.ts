@@ -1,8 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 import { Audit } from './audit.entity';
 import { BuildingType } from 'src/shared/enums';
 import { Classes } from './class.entity';
 import { Registration } from './registration.entity';
+import { Cafeteria } from './cafeteria.entity';
+import { Office } from './office.entity';
 
 @Entity('building')
 export class Building extends Audit {
@@ -25,7 +27,7 @@ export class Building extends Audit {
   longitude: number;
 
   @Column({ type: 'text' })
-  description: string;
+  description!: string;
 
   @OneToMany(() => Classes, (classRoom) => classRoom.building)
   classes: Classes[];
@@ -33,6 +35,10 @@ export class Building extends Audit {
   @OneToMany(() => Registration, (registration) => registration.building)
   registrations: Registration[];
 
-  // @OneToMany(() => Cafeteria, (cafeteria) => cafeteria.building)
-  // cafeterias: Cafeteria[]; for these dmu university these relation is not usefull
+  @OneToOne(() => Cafeteria, (cafeteria) => cafeteria.building)
+  @JoinColumn()
+  cafeteria: Cafeteria;
+ 
+  @OneToMany(() => Office, (office) => office.building)
+  offices: Office[];
 }

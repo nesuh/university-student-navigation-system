@@ -15,7 +15,10 @@ export class Users extends Audit {
   @Column()
   password: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.User })
+  @Column({type:'varchar',length:23})
+  phoneNumber: string;
+
+  @Column({ type: 'enum', enum: UserRole, default: UserRole.Admin })
   role: UserRole;
 
 }

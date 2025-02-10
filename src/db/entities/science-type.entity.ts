@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Faculty } from "./faculty.entity";
 import { Audit } from "./audit.entity";
+import { Registration } from "./registration.entity";
 
 @Entity('science_type')
 export class ScienceType extends Audit{
@@ -12,4 +13,7 @@ export class ScienceType extends Audit{
 
   @OneToMany(() => Faculty, (faculty) => faculty.scienceType)
   faculties: Faculty[];
+
+   @OneToMany(() => Registration, (registration) => registration.scienceType)
+  registrations: Registration[];
 }

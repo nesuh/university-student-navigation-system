@@ -1,4 +1,3 @@
-export * from './room.dto';
 export * from './building.dto';
 export * from './navigation.dto';
 export * from './registration.dto';

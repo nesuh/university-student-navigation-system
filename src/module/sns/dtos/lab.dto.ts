@@ -1,5 +1,18 @@
+
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsUUID, IsString } from 'class-validator';
+import { IsNotEmpty, IsUUID, IsString, IsNumber } from 'class-validator';
+
+class TimeSlot {
+  @ApiProperty({ description: 'Opening time' })
+  @IsNotEmpty()
+  @IsString()
+  opening: string;
+
+  @ApiProperty({ description: 'Closing time' })
+  @IsNotEmpty()
+  @IsString()
+  closing: string;
+}
 export class CreateLabDto {
   @ApiProperty({ description: 'Name of the lab' })
   @IsNotEmpty()
@@ -8,23 +21,29 @@ export class CreateLabDto {
 
   @ApiProperty({ description: 'Head of the lab' })
   @IsUUID()
-  headOfLabId: string;
+  headOfLab: string;
+
+  @ApiProperty({ description: 'Floor Number of the lab' })
+  @IsNotEmpty()
+  @IsNumber()
+  floorNumber: number;
+
+  @ApiProperty({ description: 'Room Number of the lab' })
+  @IsNotEmpty()
+  @IsNumber()
+  roomNumber:number
 
   @ApiProperty({ description: 'Building the lab is located in' })
   @IsUUID()
   buildingId: string;
 
-  @ApiProperty({ description: 'Room where the lab is located' })
-  @IsUUID()
-  roomId: string;
-
   @ApiProperty({ description: 'Operational time of the lab' })
   operationalTime: {
-    open: string;
-    closing: string;
+    morning: TimeSlot;
+    afternoon: TimeSlot;
+    night: TimeSlot;
   };
 }
-
 export class UpdateLabDto extends CreateLabDto {
   @ApiProperty({ description: 'ID of the lab' })
   @IsUUID()

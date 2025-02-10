@@ -23,4 +23,5 @@ export class Dormitory extends Audit {
 
   @Column()
   number_of_room: number;
+  
 }

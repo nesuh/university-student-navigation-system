@@ -29,6 +29,7 @@ export class AuthService {
             role: itemData.role,
             password:hashedPassword ,
             email: itemData.email,
+            phoneNumber:itemData.phoneNumber
         });
         await this.userRepository.save(newUser);
 

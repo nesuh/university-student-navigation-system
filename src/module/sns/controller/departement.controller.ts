@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Departments } from 'src/db/entities';
+import { Department } from 'src/db/entities';
 import { CreateDepartmentDto, UpdateDepartmentDto } from '../dtos';
 import { DepartmentService } from '../service/department.service';
 import { TEntityCrudController } from 'src/shared/controller';
@@ -13,7 +13,7 @@ const options: ExtraCrudOptions = {
 
 @Controller('department')
 @ApiTags('Department')
-export class DepartmentController extends TEntityCrudController<Departments>(
+export class DepartmentController extends TEntityCrudController<Department>(
   options,
 ) {
   constructor(private readonly departmentService: DepartmentService) {

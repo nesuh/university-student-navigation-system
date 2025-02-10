@@ -1,15 +1,15 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Audit } from './audit.entity';
 import { Building } from './building.entity';
-import { Field } from './fields.entity';
-import { RegistrationRole } from 'src/shared/enums/registration_role.enum';
+import { Faculty } from './faculty.entity';
+import { Department } from './department.entity';
+import { ScienceType } from './science-type.entity';
 @Entity('registration')
 export class Registration extends Audit {
   @PrimaryGeneratedColumn('uuid')
@@ -18,33 +18,32 @@ export class Registration extends Audit {
   @Column()
   name: string;
 
-  @Column()
-  phoneNumber: number;
+  @Column({ type: 'varchar', length: 20 })
+  phoneNumber: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column({
-    type: 'enum',
-    enum:RegistrationRole
-  })
-  role:RegistrationRole
+  @Column()
+  floorNumber: number;
+
+  @Column()
+  roomNumber: number;
 
   @ManyToOne(() => Building, (building) => building.registrations)
+  @JoinColumn({ name: 'building_id' })
   building: Building;
 
-  @OneToMany(() => Registration, (registration) => registration.departments)
-  departments: Registration[];
+  @ManyToOne(() => Department, (department) => department.registrations)
+  @JoinColumn({ name: 'department_id' })
+  department: Department;                                                                              
 
-  @Column('json')
-  operationalTime: {
-    morning: {
-      opening: string;
-      closing: string;
-    },
-    afternoon: {
-      opening: string;
-      closing: string;
-    }
-  };
+  @ManyToOne(() => Faculty, (faculty) => faculty.registrations)
+  @JoinColumn({ name: 'faculty_id' })
+  faculty: Faculty;
+
+  @ManyToOne(() => ScienceType, (scienceType) => scienceType.registrations)
+  @JoinColumn({ name: 'science_type_id' })
+  scienceType: ScienceType;
+
 }

@@ -8,7 +8,7 @@ export class CreateDormitoryDto {
   @IsEnum(GenderType)
   gender: GenderType;
 
-  @ApiProperty({ description: 'Dormitory type', enum: DormitoryType })
+  @ApiProperty({ description: 'Dormitory type  SpecialNeedPerson OR NonSpecialNeedPerson ', enum: DormitoryType })
   @IsEnum(DormitoryType)
   dormitory_type: DormitoryType;
 

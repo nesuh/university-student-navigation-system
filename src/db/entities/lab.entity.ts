@@ -1,8 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Audit } from './audit.entity';
-import { Users } from './users.entity';
 import { Building } from './building.entity';
-import { Room } from './room.entity';
 
 @Entity('lab')
 export class Lab extends Audit {
@@ -12,17 +10,22 @@ export class Lab extends Audit {
   @Column({ unique: true })
   name: string;
 
-  @ManyToOne(() => Users)
-  headOfLab: Users;
+  @Column()
+  headOfLab: string ;
 
   @ManyToOne(() => Building)
   building: Building;
 
-  @ManyToOne(() => Room)
-  room: Room;
+   @Column()
+   floorNumber: number;
 
-  operationalTime: {
-    open: string;
-    closing: string;
-  };
+   @Column()
+   roomNumber: number;
+
+   @Column('json')
+   operationalTime: {
+     morning: { open: string; closing: string };
+     afternoon: { open: string; closing: string };
+     night: { open: string; closing: string };
+   };
 }

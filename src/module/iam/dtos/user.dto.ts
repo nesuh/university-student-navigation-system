@@ -3,25 +3,30 @@ import { IsNotEmpty, IsEmail, IsString, IsEnum, IsUUID } from 'class-validator';
 import { UserRole } from 'src/shared/enums';
 
 export class CreateUserDto {
-  @ApiProperty({ description: 'Name of the user' })
+  @ApiProperty({ description: 'Name of the Admin' })
   @IsNotEmpty()
   @IsString()
   name: string;
 
-  @ApiProperty({ description: 'Email of the user' })
+  @ApiProperty({ description: 'Email of the Admin' })
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({ description: 'Password for the user' })
+  @ApiProperty({ description: 'Password for the Admin' })
   @IsNotEmpty()
   @IsString()
   password: string;
 
+  @ApiProperty({ description: 'phoneNumber for the Admin' })
+  @IsNotEmpty()
+  @IsString()
+  phoneNumber: string;
+
   @ApiProperty({
-    description: 'Role of the user',
+    description: 'Role of the Admin',
     enum: UserRole,
-    default: UserRole.User,
+    default: UserRole.Admin,
   })
   @IsEnum(UserRole)
   role: UserRole;

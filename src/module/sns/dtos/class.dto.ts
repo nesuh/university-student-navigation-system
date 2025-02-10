@@ -7,7 +7,6 @@ import {
   IsEnum,
   IsOptional,
 } from 'class-validator'; // Adjust the import based on your file structure
-import { RoomType } from 'src/shared/enums';
 
 export class CreateClassDto {
   @ApiProperty({ description: 'Name of the class' })
@@ -23,9 +22,15 @@ export class CreateClassDto {
   @IsNumber()
   floorNumber: number;
 
-  @ApiProperty({ description: 'Room type of the class', enum: RoomType })
-  @IsEnum(RoomType)
-  roomType: RoomType;
+  @ApiProperty({ description: 'Room number where the class is located' })
+  @IsNumber()
+  roomNumber: number;
+
+  @ApiProperty({ description: 'Room Type of the class' })
+  @IsNotEmpty()
+  @IsString()
+  roomType:string
+
 }
 export class UpdateClassDto extends CreateClassDto {
   @ApiProperty({ description: 'ID of the class', required: true })
@@ -47,9 +52,4 @@ export class UpdateClassDto extends CreateClassDto {
   @IsOptional()
   @IsNumber()
   floorNumber!: number;
-
-  @ApiProperty({ description: 'Updated room type', required: false })
-  @IsOptional()
-  @IsEnum(RoomType)
-  roomType!: RoomType;
 }
