@@ -23,5 +23,8 @@ export class Classes extends Audit {
   floorNumber: number;
 
   @Column()
-  roomType: string; // You can specify an enum if needed, e.g., 'lecture', 'seminar'
+  roomType: string;
+
+  @Column()
+  roomNumber:number
 }

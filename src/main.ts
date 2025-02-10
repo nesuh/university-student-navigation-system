@@ -11,7 +11,6 @@ async function bootstrap() {
   });
 
   app.useGlobalFilters(new GlobalExceptionFilter());
-  // app.enableCors() =true
   const config = new DocumentBuilder()
     .setTitle('DMU Navigation System API')
     .setDescription('DMU Navigation System API')

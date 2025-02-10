@@ -1,4 +1,4 @@
 export enum DormitoryType {
-  SpecialNeedPerson = 'SpecialNeedPerson',
+  SNP = 'SpecialNeedPerson',
   NonSNP = 'NonSpecialNeedPerson',
 }

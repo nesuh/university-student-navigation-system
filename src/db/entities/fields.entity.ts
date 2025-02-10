@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Departments } from "./department.entity";
+import { Department } from "./department.entity";
 import { Audit } from "./audit.entity";
 
 @Entity('field')
@@ -8,9 +8,9 @@ export class Field extends Audit{
   id: string;
 
   @Column()
-  name: string; // Example: "Artificial Intelligence", "Cyber Security", "Finance"
+  name: string; // Example: "Artificial Intelligence", "Cyber Security", "Finance" choose stream
 
-  @ManyToOne(() => Departments, (department) => department.fields)
+  @ManyToOne(() => Department, (department) => department.fields)
   @JoinColumn({ name: 'department_id' })
-  department: Departments;
+  department: Department;
 }

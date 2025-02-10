@@ -3,9 +3,10 @@ import { Audit } from './audit.entity';
 import { Building } from './building.entity';
 import { Faculty } from './faculty.entity';
 import { Field } from './fields.entity';
+import { Registration } from './registration.entity';
 
-@Entity('departments')
-export class Departments extends Audit {
+@Entity('department')
+export class Department extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,4 +19,7 @@ export class Departments extends Audit {
 
   @OneToMany(() => Field, (field) => field.department)
   fields: Field[];
+
+  @OneToMany(() => Registration, (registration) => registration.department)
+  registrations: Registration[];
 }

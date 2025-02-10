@@ -10,7 +10,7 @@ import {
   Building,
   Cafeteria,
   Classes,
-  Departments,
+  Department,
   Dormitory,
   Faculty,
   Field,
@@ -23,9 +23,6 @@ import {
   ScienceType,
   Shopping,
 } from 'src/db/entities';
-import { Room } from 'src/db/entities/room.entity';
-import { RoomController } from './controller/room.controller';
-import { RoomService } from './service/room.service';
 import { CafeteriaController } from './controller/cafeteria.controller';
 import { ClassController } from './controller/class.controller';
 import { DormitoryController } from './controller/dormitory.controller';
@@ -55,9 +52,8 @@ import { ScienceTypeService } from './service/science-type.service';
   imports: [
     TypeOrmModule.forFeature([
       Building,
-      Departments,
+      Department,
       NavigationPath,
-      Room,
       Dormitory,
       Cafeteria,
       Classes,
@@ -70,14 +66,12 @@ import { ScienceTypeService } from './service/science-type.service';
       Shopping,
       Faculty,
       ScienceType,
-
     ]),
   ],
   controllers: [
     BuildingController,
     DepartmentController,
     NavigationPathsController,
-    RoomController,
     CafeteriaController,
     ClassController,
     DormitoryController,
@@ -95,7 +89,6 @@ import { ScienceTypeService } from './service/science-type.service';
     BuildingService,
     DepartmentService,
     NavigationPathService,
-    RoomService,
     CafeteriaService,
     ClassService,
     DormitoryService,

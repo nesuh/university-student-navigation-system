@@ -10,6 +10,18 @@ import {
 } from 'class-validator';
 import { CafeteriaType } from 'src/shared/enums/cafeteria_type.enum';
 
+class TimeSlot {
+  @ApiProperty({ description: 'Opening time' })
+  @IsNotEmpty()
+  @IsString()
+  opening: string;
+
+  @ApiProperty({ description: 'Closing time' })
+  @IsNotEmpty()
+  @IsString()
+  closing: string;
+}
+
 export class CreateCafeteriaDto {
   @ApiProperty({ description: 'Name of the cafeteria' })
   @IsNotEmpty()
@@ -24,19 +36,11 @@ export class CreateCafeteriaDto {
   @IsNumber()
   capacity: number;
 
-  @ApiProperty({ description: 'ID of the head of the cafeteria' })
-  @IsUUID()
-  headOfCafeteriaId: string;
-
   @ApiProperty({
     description: 'ID of the building the cafeteria is located in',
   })
   @IsUUID()
   buildingId: string;
-
-  @ApiProperty({ description: 'ID of the room where the cafeteria is located' })
-  @IsUUID()
-  roomId: string;
 
   @ApiProperty({
     description: 'Operational times for the cafeteria',
@@ -44,11 +48,17 @@ export class CreateCafeteriaDto {
   })
   @IsObject()
   operationalTime: {
-    morning: { open: Date; closing: Date };
-    afternoon: { open: Date; closing: Date };
-    night: { open: Date; closing: Date };
+    morning: TimeSlot;
+    afternoon: TimeSlot;
+    night: TimeSlot;
   };
+
+  @ApiProperty({ description: 'Description of the cafeteria, it is optional' })
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 }
+
 export class UpdateCafeteriaDto extends CreateCafeteriaDto {
   @ApiProperty({ description: 'ID of the cafeteria' })
   @IsUUID()
@@ -83,8 +93,8 @@ export class UpdateCafeteriaDto extends CreateCafeteriaDto {
   })
   @IsOptional()
   operationalTime!: {
-    morning: { open: Date; closing: Date };
-    afternoon: { open: Date; closing: Date };
-    night: { open: Date; closing: Date };
+    morning: TimeSlot;
+    afternoon: TimeSlot;
+    night: TimeSlot;
   };
 }

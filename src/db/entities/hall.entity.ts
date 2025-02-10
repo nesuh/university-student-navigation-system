@@ -11,12 +11,12 @@ export class Hall extends Audit {
   @Column({ unique: true })
   name: string;
 
-  @ManyToOne(() => Users)
-  headOfMeetingRoom: Users;
-
   @ManyToOne(() => Building)
   building: Building;
 
   @Column()
   capacity: number;
+
+  @Column()
+  description!: string;
 }

@@ -1,7 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ScienceType } from "./science-type.entity";
-import { Departments } from "./department.entity";
+import { Department } from "./department.entity";
 import { Audit } from "./audit.entity";
+import { Registration } from "./registration.entity";
 
 @Entity('faculty')
 export class Faculty extends Audit{
@@ -15,6 +16,11 @@ export class Faculty extends Audit{
   @JoinColumn({ name: 'science_type_id' })
   scienceType: ScienceType;
 
-  @OneToMany(() => Departments, (department) => department.faculty)
-  departments: Departments[];
+  @OneToMany(() => Department, (department) => department.faculty)
+  departments: Department[];
+
+  @OneToMany(() => Registration, (registration) => registration.faculty)
+  registrations: Registration[];
 }
+
+

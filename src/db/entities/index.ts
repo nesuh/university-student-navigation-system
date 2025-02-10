@@ -3,7 +3,6 @@ export * from './building.entity';
 export * from './department.entity';
 export * from './navigation-path.entity';
 export * from './users.entity';
-export * from './room.entity';
 export * from './class.entity';
 export * from './cafeteria.entity';
 export * from './hall.entity';
