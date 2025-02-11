@@ -1,55 +1,57 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  UseInterceptors,
-} from '@nestjs/common';
-import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
-import { TExtraCrudService } from '../service';
-import { ObjectLiteral } from 'typeorm';
-import { ExtraCrudOptions } from '../types/crud-option.type';
-import { AllowAnonymous } from '../authorization';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from "@nestjs/common";
+import { ApiBearerAuth, ApiBody } from "@nestjs/swagger";
+import { TExtraCrudService } from "../service";
+import { ExtraCrudOptions } from "../types/crud-option.type";
 
-export function TExtraCrudController<T extends ObjectLiteral>(
-  options?: ExtraCrudOptions,
+export function TExtraCrudController<T>(
+    options?: ExtraCrudOptions,
 ) {
-  @Controller()
-  @UseInterceptors(/* your interceptors if any */)
-  @ApiBearerAuth()
-  class ExtraCrudControllerHost {
-    constructor(public readonly schemaCrudService: TExtraCrudService<T>) {}
+    @Controller()
+    @UseInterceptors(/* your interceptors if any */)
+    @ApiBearerAuth()
+    class ExtraCrudControllerHost {
+        constructor(
+            public readonly schemaCrudService: TExtraCrudService<T>,
+        ) {
+        }
 
-    @AllowAnonymous()
-    @Get('/list/:parentId')
-    async findAll(@Param('parentId') parentId: string) {
-      return await this.schemaCrudService.findAll(parentId);
-    }
-   @AllowAnonymous()
-    @Get('/:id')
-    async findOne(@Param('id') id: string) {
-      return await this.schemaCrudService.findOne(id);
-    }
+        @Get('/list/:parentId')
+        async findAll(
+            @Param('parentId') parentId: string
+        ) {
+            return await this.schemaCrudService.findAll(parentId)
+        }
 
-    @Post()
-    @ApiBody({ type: options?.createDto })
-    async create(@Body() itemData: any) {
-      return await this.schemaCrudService.create(itemData);
-    }
+        @Get('/:id')
+        async findOne(
+            @Param('id') id: string
+        ) {
+            return await this.schemaCrudService.findOne(id)
+        }
 
-    @Put('/:id')
-    @ApiBody({ type: options?.updateDto })
-    async update(@Param('id') id: string, @Body() itemData: any) {
-      return await this.schemaCrudService.update(id, itemData);
-    }
+        @Post()
+        @ApiBody({ type: options?.createDto })
+        async create(
+            @Body() itemData: any
+        ) {
+            return await this.schemaCrudService.create(itemData)
+        }
 
-    @Delete('/:id')
-    async delete(@Param('id') id: string) {
-      return await this.schemaCrudService.delete(id);
+        @Put('/:id')
+        @ApiBody({ type: options?.updateDto })
+        async update(
+            @Param('id') id: string,
+            @Body() itemData: any
+        ) {
+            return await this.schemaCrudService.update(id, itemData)
+        }
+
+        @Delete('/:id')
+        async delete(
+            @Param('id') id: string
+        ) {
+            return await this.schemaCrudService.delete(id)
+        }
     }
-  }
-  return ExtraCrudControllerHost;
+    return ExtraCrudControllerHost
 }

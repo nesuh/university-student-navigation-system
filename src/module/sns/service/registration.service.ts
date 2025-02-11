@@ -71,4 +71,23 @@ export class RegistrationService extends TExtraCrudService<Registration> {
         await this.registrationRepository.save(registration);
         return registration;
       } 
+
+      async findAll( parentId: string) {
+        const data = await this.registrationRepository.find({
+          where: {
+          id:parentId
+          }, 
+          relations:{
+            building:true,
+            department:true,
+            faculty:true, 
+            scienceType:true
+          },
+        });
+
+        return {
+          count: data.length,
+          items: data,
+        };
+      }
 }
