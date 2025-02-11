@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateRegistrationDto, UpdateRegistrationDto } from '../dtos';
 import { ApiTags } from '@nestjs/swagger';
 import { Registration } from 'src/db/entities';
@@ -25,4 +25,11 @@ export class RegistrationController extends TExtraCrudController<Registration>(
   async registerRegistration(@Body() body: CreateRegistrationDto) {
     return await this.registrationService.registerRegistration(body);
   } 
+
+   @Get('list/:parentId')
+  async findAll(
+    @Param('parentId') parentId: string
+  ) {
+    return await this.registrationService.findAll(parentId);
+  }
 }
