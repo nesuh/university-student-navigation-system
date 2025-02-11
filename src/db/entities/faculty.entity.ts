@@ -9,7 +9,7 @@ export class Faculty extends Audit{
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   name: string; // Example: "Engineering", "Business", "Law"
 
   @ManyToOne(() => ScienceType, (scienceType) => scienceType.faculties)

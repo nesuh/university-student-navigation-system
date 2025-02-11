@@ -10,7 +10,7 @@ export class Department extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   name: string; // Example: "Computer Science", "Psychology", "Economics"
 
   @ManyToOne(() => Faculty, (faculty) => faculty.departments)

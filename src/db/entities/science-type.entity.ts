@@ -8,7 +8,7 @@ export class ScienceType extends Audit{
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   name: string; // 'Natural Science' or 'Social Science'
 
   @OneToMany(() => Faculty, (faculty) => faculty.scienceType)

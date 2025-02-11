@@ -1,7 +1,8 @@
 import { GenderType } from 'src/shared/enums';
 import { DormitoryType } from 'src/shared/enums/dormitory-type.enum';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Audit } from './audit.entity';
+import { Building } from './building.entity';
 
 @Entity('dormitory')
 export class Dormitory extends Audit {
@@ -23,5 +24,9 @@ export class Dormitory extends Audit {
 
   @Column()
   number_of_room: number;
-  
+
+  @ManyToOne(() => Building, (building) => building.dormitories)
+  @JoinColumn({ name: 'building_id' })
+  buildings: Building
+  ;
 }

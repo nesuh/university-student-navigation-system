@@ -1,12 +1,12 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TEntityCrudController } from 'src/shared/controller';
-import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
+import { EntityCrudOptions, ExtraCrudOptions } from 'src/shared/types/crud-option.type';
 import { ScienceType } from 'src/db/entities';
 import { ScienceTypeService } from '../service/science-type.service';
 import { CreateScienceTypeDto, UpdateScienceTypeDto } from '../dtos';
 
-const options: ExtraCrudOptions = {
+const options: EntityCrudOptions = {
   createDto: CreateScienceTypeDto,
   updateDto: UpdateScienceTypeDto,
 };
