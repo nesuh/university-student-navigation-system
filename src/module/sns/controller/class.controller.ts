@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Classes } from 'src/db/entities';
 import { TExtraCrudController } from 'src/shared/controller';
@@ -15,7 +15,10 @@ const options: ExtraCrudOptions = {
 @Controller('classes')
 @ApiTags('Classes')
 export class ClassController extends TExtraCrudController<Classes>(options) {
-  constructor(private readonly ClassService: ClassService) {
-    super(ClassService);
+  constructor(private readonly classService: ClassService) {
+    super(classService);
+  }
+  async registerClass(@Body() body: CreateClassDto) {
+    return await this.classService.registerClass(body);
   }
 }

@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
 import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
@@ -17,5 +17,10 @@ const options: ExtraCrudOptions = {
 export class FieldController extends TExtraCrudController<Field>(options) {
   constructor(private readonly fieldService: FieldService) {
     super(fieldService);
+  }
+
+  @Post()
+  async registerField(@Body() body: CreateFieldsDto) {
+    return await this.fieldService.registerField(body);
   }
 }

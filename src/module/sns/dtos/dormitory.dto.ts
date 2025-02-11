@@ -19,6 +19,10 @@ export class CreateDormitoryDto {
   @ApiProperty({ description: 'Number of rooms' })
   @IsNumber()
   number_of_room: number;
+  
+  @ApiProperty({ description: 'building Id of rooms' })
+  @IsUUID()
+  buildingId: string;
 }
 
 export class UpdateDormitoryDto extends CreateDormitoryDto {

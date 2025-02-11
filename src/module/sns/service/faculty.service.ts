@@ -17,7 +17,7 @@ export class FacultyService extends TExtraCrudService<Faculty> {
     super(facultyRepository,'id');
   }
 
-  async registerFaculty(body: CreateFacultyDto): Promise<Faculty> {
+  async registerFaculty(body: CreateFacultyDto) {
 
     const scienceType = await this.scienceTypeRepository.findOne({
       where:{

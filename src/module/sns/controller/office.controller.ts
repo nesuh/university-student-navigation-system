@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CreateOfficeDto, UpdateOfficeDto } from '../dtos';
 import { ApiTags } from '@nestjs/swagger';
 import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
@@ -17,5 +17,10 @@ const options: ExtraCrudOptions = {
 export class OfficeController extends TExtraCrudController<Office>(options) {
   constructor(private readonly officeService: OfficeService) {
     super(officeService);
+  }
+
+  @Post()
+  async registerOffice(@Body() body: CreateOfficeDto) {
+    return await this.officeService.registerOffice(body);
   }
 }

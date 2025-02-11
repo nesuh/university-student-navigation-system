@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Lab } from 'src/db/entities';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
@@ -17,5 +17,9 @@ const options: ExtraCrudOptions = {
 export class LabController extends TExtraCrudController<Lab>(options) {
   constructor(private readonly labService: labService) {
     super(labService);
+  }
+  @Post()
+  async registerLab(@Body() body: CreateLabDto) {
+    return await this.labService.registerLab(body);
   }
 }

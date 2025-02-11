@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Department } from 'src/db/entities';
 import { CreateDepartmentDto, UpdateDepartmentDto } from '../dtos';
@@ -19,5 +19,10 @@ export class DepartmentController extends TExtraCrudController<Department>(
 ) {
   constructor(private readonly departmentService: DepartmentService) {
     super(departmentService);
+  }
+  @Post()
+  async registerDepartment(
+    @Body() body: CreateDepartmentDto) {
+    return await this.departmentService.registerDepartment(body);
   }
 }

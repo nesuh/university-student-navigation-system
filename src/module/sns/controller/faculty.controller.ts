@@ -20,8 +20,8 @@ export class FacultyController extends TExtraCrudController<Faculty>(options) {
     super(facultyService);
   }
 
-  @Post('Register Faculty in DMU')
-  async registerFaculty(@Body() body: CreateRegistrationDto):Promise<Faculty> {
+  @Post()
+  async registerFaculty(@Body() body: CreateFacultyDto) {
     return await this.facultyService.registerFaculty(body);
   }
 }

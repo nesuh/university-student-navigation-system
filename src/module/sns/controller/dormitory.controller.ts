@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Dormitory } from 'src/db/entities';
 import { TExtraCrudController } from 'src/shared/controller';
@@ -19,5 +19,10 @@ export class DormitoryController extends TExtraCrudController<Dormitory>(
 ) {
   constructor(private readonly dormitoryService: DormitoryService) {
     super(dormitoryService);
+  }
+
+  @Post()
+  async registerDormitory(@Body() body: CreateDormitoryDto) {
+    return await this.dormitoryService.registerDormitory(body);
   }
 }

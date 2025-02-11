@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Hall } from 'src/db/entities';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
@@ -17,5 +17,10 @@ const options: ExtraCrudOptions = {
 export class HallController extends TExtraCrudController<Hall>(options) {
   constructor(private readonly hallService: HallService) {
     super(hallService);
+  }
+
+  @Post()
+  async registerHall(@Body() body: CreateHallDto) {
+    return await this.hallService.registerHall(body);
   }
 }

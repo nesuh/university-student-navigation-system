@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Cafeteria } from 'src/db/entities';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
@@ -19,5 +19,10 @@ export class CafeteriaController extends TExtraCrudController<Cafeteria>(
 ) {
   constructor(private readonly cafeteriaService: CafeteriaService) {
     super(cafeteriaService);
+  }
+
+  @Post()
+  async registerCafeteria(@Body() body: CreateCafeteriaDto) {
+    return await this.cafeteriaService.registerCafeteria(body);
   }
 }

@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CreateRegistrationDto, UpdateRegistrationDto } from '../dtos';
 import { ApiTags } from '@nestjs/swagger';
 import { Registration } from 'src/db/entities';
@@ -20,4 +20,9 @@ export class RegistrationController extends TExtraCrudController<Registration>(
   constructor(private readonly registrationService: RegistrationService) {
     super(registrationService);
   }
+
+  @Post()
+  async registerRegistration(@Body() body: CreateRegistrationDto) {
+    return await this.registrationService.registerRegistration(body);
+  } 
 }
