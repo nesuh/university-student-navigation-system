@@ -11,14 +11,11 @@ import {
 import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { TEntityCrudService } from '../service/entity-crud.service';
 import { ObjectLiteral } from 'typeorm';
-
-export type TEntityCrudOptions = {
-  createDto?: { new (): NonNullable<unknown> };
-  updateDto?: { new (): NonNullable<unknown> };
-};
+import { EntityCrudOptions } from '../types/crud-option.type';
+import { AllowAnonymous } from '../authorization';
 
 export function TEntityCrudController<T extends ObjectLiteral>(
-  options?: TEntityCrudOptions,
+  options?: EntityCrudOptions,
 ) {
   @Controller()
   @UseInterceptors(/* your interceptors if any */)
@@ -26,11 +23,13 @@ export function TEntityCrudController<T extends ObjectLiteral>(
   class SchemaCrudControllerHost {
     constructor(public readonly schemaCrudService: TEntityCrudService<T>) {}
 
+    @AllowAnonymous()
     @Get()
     async findAll() {
       return await this.schemaCrudService.findAll();
     }
 
+    @AllowAnonymous()
     @Get('/:id')
     async findOne(@Param('id') id: string): Promise<T | null> {
       return await this.schemaCrudService.findOne(id);

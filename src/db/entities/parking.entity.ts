@@ -6,7 +6,7 @@ export class Parking extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   parkingName: string;
 
   @Column()

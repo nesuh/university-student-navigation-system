@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TEntityCrudService } from 'src/shared/service';
 import { ScienceType } from 'src/db/entities';
+import { TEntityCrudService } from 'src/shared/service';
 
 @Injectable()
 export class ScienceTypeService extends TEntityCrudService<ScienceType> {

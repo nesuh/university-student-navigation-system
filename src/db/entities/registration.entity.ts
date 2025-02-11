@@ -18,7 +18,7 @@ export class Registration extends Audit {
   @Column()
   name: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 20 ,unique:true})
   phoneNumber: string;
 
   @Column({ unique: true })

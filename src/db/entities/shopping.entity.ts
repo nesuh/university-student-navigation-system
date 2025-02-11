@@ -6,7 +6,7 @@ export class Shopping extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   shoppingName: string;
 
   @Column()

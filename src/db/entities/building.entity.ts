@@ -5,6 +5,7 @@ import { Classes } from './class.entity';
 import { Registration } from './registration.entity';
 import { Cafeteria } from './cafeteria.entity';
 import { Office } from './office.entity';
+import { Dormitory } from './dormitory.entity';
 
 @Entity('building')
 export class Building extends Audit {
@@ -41,4 +42,7 @@ export class Building extends Audit {
  
   @OneToMany(() => Office, (office) => office.building)
   offices: Office[];
+
+  @OneToMany(() => Dormitory, (dormitory) => dormitory.buildings) 
+  dormitories: Dormitory[];
 }

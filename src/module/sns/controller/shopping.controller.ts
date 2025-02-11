@@ -1,12 +1,12 @@
 import { Controller } from '@nestjs/common';
 import { CreateShoppingDto, UpdateShoppingDto } from '../dtos';
 import { ApiTags } from '@nestjs/swagger';
-import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
+import { EntityCrudOptions, ExtraCrudOptions } from 'src/shared/types/crud-option.type';
 import { TEntityCrudController } from 'src/shared/controller';
 import { Shopping } from 'src/db/entities';
 import { ShoppingService } from '../service/shopping.service';
 
-const options: ExtraCrudOptions = {
+const options: EntityCrudOptions = {
   createDto: CreateShoppingDto,
   updateDto: UpdateShoppingDto,
 };

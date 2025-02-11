@@ -2,11 +2,11 @@ import { Controller } from '@nestjs/common';
 import { CreateParkingDto, UpdateParkingDto } from '../dtos';
 import { ApiTags } from '@nestjs/swagger';
 import { Parking } from 'src/db/entities';
-import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
-import { TEntityCrudController } from 'src/shared/controller';
+import { EntityCrudOptions, ExtraCrudOptions } from 'src/shared/types/crud-option.type';
+import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
 import { ParkingService } from '../service/parking.service';
 
-const options: ExtraCrudOptions = {
+const options: EntityCrudOptions = {
   createDto: CreateParkingDto,
   updateDto: UpdateParkingDto,
 };

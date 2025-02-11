@@ -7,7 +7,7 @@ export class Field extends Audit{
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({unique:true})
   name: string; // Example: "Artificial Intelligence", "Cyber Security", "Finance" choose stream
 
   @ManyToOne(() => Department, (department) => department.fields)

@@ -11,14 +11,11 @@ import {
 import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { TExtraCrudService } from '../service';
 import { ObjectLiteral } from 'typeorm';
-
-export type TExtraCrudOptions = {
-  createDto?: { new (): NonNullable<unknown> };
-  updateDto?: { new (): NonNullable<unknown> };
-};
+import { ExtraCrudOptions } from '../types/crud-option.type';
+import { AllowAnonymous } from '../authorization';
 
 export function TExtraCrudController<T extends ObjectLiteral>(
-  options?: TExtraCrudOptions,
+  options?: ExtraCrudOptions,
 ) {
   @Controller()
   @UseInterceptors(/* your interceptors if any */)
@@ -26,11 +23,12 @@ export function TExtraCrudController<T extends ObjectLiteral>(
   class ExtraCrudControllerHost {
     constructor(public readonly schemaCrudService: TExtraCrudService<T>) {}
 
+    @AllowAnonymous()
     @Get('/list/:parentId')
     async findAll(@Param('parentId') parentId: string) {
       return await this.schemaCrudService.findAll(parentId);
     }
-
+   @AllowAnonymous()
     @Get('/:id')
     async findOne(@Param('id') id: string) {
       return await this.schemaCrudService.findOne(id);
