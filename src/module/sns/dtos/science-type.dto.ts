@@ -4,7 +4,7 @@ import { IsString, IsUUID } from 'class-validator';
 export class CreateScienceTypeDto {
   @ApiProperty({ description: 'Name of the science type  //Natural Science or Social Science' })
   @IsString()
-  name: string;
+  ScienceTypeName: string;
 }
 
 export class UpdateScienceTypeDto extends CreateScienceTypeDto {

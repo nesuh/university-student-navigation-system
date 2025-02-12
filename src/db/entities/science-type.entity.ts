@@ -9,7 +9,7 @@ export class ScienceType extends Audit{
   id: string;
 
   @Column({unique:true})
-  name: string; // 'Natural Science' or 'Social Science'
+  scienceTypeName: string; // 'Natural Science' or 'Social Science'
 
   @OneToMany(() => Faculty, (faculty) => faculty.scienceType)
   faculties: Faculty[];
