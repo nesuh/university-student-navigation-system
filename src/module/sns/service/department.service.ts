@@ -36,4 +36,12 @@ export class DepartmentService extends TExtraCrudService<Department> {
         return department;
     
   }
+
+  async findAll(){
+    const data = await this.departmentRepository.find();
+    return {
+      count: data.length,
+      items: data,
+    };
+  }
 }
