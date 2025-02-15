@@ -26,7 +26,6 @@ export class FacultyService extends TExtraCrudService<Faculty> {
         if(!scienceType){
           throw new BadRequestException('Science Type not found');
         }
-
         const faculty = this.facultyRepository.create({
           name: body.name,
           scienceType
@@ -35,6 +34,14 @@ export class FacultyService extends TExtraCrudService<Faculty> {
         await this.facultyRepository.save(faculty);
         return faculty;
     
+  }
+
+   async findAll() {
+    const data = await this.facultyRepository.find();
+    return {
+      count: data.length,
+      items: data,
+    };
   }
 
 }

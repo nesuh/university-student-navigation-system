@@ -26,10 +26,9 @@ export class RegistrationController extends TExtraCrudController<Registration>(
     return await this.registrationService.registerRegistration(body);
   } 
 
-   @Get('list/:parentId')
+   @Get('list-all')
   async findAll(
-    @Param('parentId') parentId: string
   ) {
-    return await this.registrationService.findAll(parentId);
+    return await this.registrationService.findAll();
   }
 }

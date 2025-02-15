@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post ,Get} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
 import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
@@ -24,4 +24,10 @@ export class FacultyController extends TExtraCrudController<Faculty>(options) {
   async registerFaculty(@Body() body: CreateFacultyDto) {
     return await this.facultyService.registerFaculty(body);
   }
+
+  @Get('list-all')
+       async getFacultyList() { 
+       return await this.facultyService.findAll();
+    }
+
 }

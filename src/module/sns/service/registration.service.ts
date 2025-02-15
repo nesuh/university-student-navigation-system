@@ -72,11 +72,8 @@ export class RegistrationService extends TExtraCrudService<Registration> {
         return registration;
       } 
 
-      async findAll( parentId: string) {
-        const data = await this.registrationRepository.find({
-          where: {
-          id:parentId
-          }, 
+      async findAll() {
+        const data = await this.registrationRepository.find({ 
           relations:{
             building:true,
             department:true,
@@ -84,7 +81,6 @@ export class RegistrationService extends TExtraCrudService<Registration> {
             scienceType:true
           },
         });
-
         return {
           count: data.length,
           items: data,
