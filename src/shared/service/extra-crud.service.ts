@@ -21,7 +21,7 @@ export class TExtraCrudService<T extends ObjectLiteral> {
     };
   }
 
-  async findOne(id: string) {
+  async findOne(id: string):Promise<T | undefined> {
     return await this.repository.findOne({
       where: {
         id,

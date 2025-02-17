@@ -37,4 +37,26 @@ export class ClassService extends TExtraCrudService<Classes> {
         await this.classRepository.save(classRoom);
         return classRoom;
       }
+
+      async findAll(){
+          const data = await this.classRepository.find({
+            relations:{
+              building:true,
+            }
+      })
+      return {
+        count: data.length,
+        items: data,
+      };
+      }
+      async findOne(id: string):Promise<Classes | undefined> {
+        return await this.classRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+            building:true
+          }
+        });
+      }
 }

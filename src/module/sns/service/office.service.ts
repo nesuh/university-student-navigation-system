@@ -39,4 +39,27 @@ export class OfficeService extends TExtraCrudService<Office> {
         await this.officeRepository.save(office);
         return office;
       } 
-}
+
+      async findAllRegisterOffice(){
+          const data = await this.officeRepository.find({
+            relations:{
+              building:true
+            }
+      })
+      return {
+        count: data.length,
+        items: data,
+      };
+      }
+      async findOne(id: string):Promise<Office | undefined> {
+        return await this.officeRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+            building:true
+          }
+        });
+      } 
+} 
+

@@ -36,4 +36,26 @@ export class DormitoryService extends TExtraCrudService<Dormitory> {
         await this.dormitoryRepository.save(dormitory);
         return dormitory;
       }
+
+      async findAll(){
+          const data = await this.dormitoryRepository.find({
+            relations:{
+              buildings:true
+            }
+      })
+      return {
+        count: data.length,
+        items: data,
+      };
+      }
+      async findOne(id: string):Promise<Dormitory | undefined> {
+        return await this.dormitoryRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+            buildings:true
+          }
+        });
+      }
 }
