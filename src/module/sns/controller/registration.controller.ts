@@ -5,6 +5,7 @@ import { Registration } from 'src/db/entities';
 import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
 import { TEntityCrudController, TExtraCrudController } from 'src/shared/controller';
 import { RegistrationService } from '../service/registration.service';
+import { AllowAnonymous } from 'src/shared/authorization';
 
 const options: ExtraCrudOptions = {
   entityIdName: 'registrationId',
@@ -25,7 +26,16 @@ export class RegistrationController extends TExtraCrudController<Registration>(
   async registerRegistration(@Body() body: CreateRegistrationDto) {
     return await this.registrationService.registerRegistration(body);
   } 
+  
+  @AllowAnonymous()
+  @Get('/:id')
+  async findOne(
+      @Param('id') id: string
+  ):Promise<Registration | undefined> {
+      return await this.registrationService.findOne(id)
+  }
 
+  @AllowAnonymous()
    @Get('list-all')
   async findAll(
   ) {

@@ -38,10 +38,24 @@ export class DepartmentService extends TExtraCrudService<Department> {
   }
 
   async findAll(){
-    const data = await this.departmentRepository.find();
+    const data = await this.departmentRepository.find({
+      relations:{
+        faculty:true
+      }
+    });
     return {
       count: data.length,
       items: data,
     };
+  }
+  async findOne(id: string):Promise<Department | undefined> {
+    return await this.departmentRepository.findOne({
+      where: {
+        id,
+      },
+      relations:{
+        faculty:true
+      }
+    });
   }
 }

@@ -86,4 +86,20 @@ export class RegistrationService extends TExtraCrudService<Registration> {
           items: data,
         };
       }
+
+      async findOne(id: string):Promise<Registration| undefined> {
+        return await this.registrationRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+     building:true,
+     department:true,
+     faculty:true,
+     scienceType:true,
+          }
+        });
+      } 
+
+
 }

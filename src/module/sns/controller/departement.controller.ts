@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Department } from 'src/db/entities';
 import { CreateDepartmentDto, UpdateDepartmentDto } from '../dtos';
 import { DepartmentService } from '../service/department.service';
 import { TExtraCrudController } from 'src/shared/controller';
 import { ExtraCrudOptions } from 'src/shared/types/crud-option.type';
+import { AllowAnonymous } from 'src/shared/authorization';
 
 const options: ExtraCrudOptions = {
   entityIdName: 'departmentId',
@@ -25,9 +26,16 @@ export class DepartmentController extends TExtraCrudController<Department>(
     @Body() body: CreateDepartmentDto) {
     return await this.departmentService.registerDepartment(body);
   }
-
+ @AllowAnonymous()
     @Get('list-all')
          async getDepartmentList() {
          return await this.departmentService.findAll();
+      }
+  @AllowAnonymous()
+      @Get('/:id')
+      async findOne(
+          @Param('id') id: string
+      ):Promise<Department | undefined> {
+          return await this.departmentService.findOne(id)
       }
 }

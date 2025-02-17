@@ -38,4 +38,26 @@ export class labService extends TExtraCrudService<Lab> {
         await this.labRepository.save(lab);
         return lab;
       }
+
+          async findAll(){
+              const data = await this.labRepository.find({
+                relations:{
+                  building:true,
+                }
+          })
+          return {
+            count: data.length,
+            items: data,
+          };
+          }
+          async findOne(id: string):Promise<Lab | undefined> {
+            return await this.labRepository.findOne({
+              where: {
+                id,
+              },
+              relations:{
+                building:true
+              }
+            });
+          } 
 }

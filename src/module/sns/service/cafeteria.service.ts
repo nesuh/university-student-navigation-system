@@ -40,4 +40,27 @@ export class CafeteriaService extends TExtraCrudService<Cafeteria> {
         return cafeteria;
 
          }
+
+         async findAllRegisterCafeteria(){
+          const data = await this.cafeteriaRepository.find({
+            relations:{
+              building:true
+            }
+      })
+      return {
+        count: data.length,
+        items: data,
+      };
+      }
+      async findOne(id: string):Promise<Cafeteria | undefined> {
+        return await this.cafeteriaRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+            building:true
+          }
+        });
+      }
 }
+

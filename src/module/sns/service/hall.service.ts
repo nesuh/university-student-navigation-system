@@ -36,4 +36,25 @@ export class HallService extends TExtraCrudService<Hall> {
         await this.hallRepository.save(hall);
         return hall;
       }
+      async findAll(){
+          const data = await this.hallRepository.find({
+            relations:{
+              building:true
+            }
+      })
+      return {
+        count: data.length,
+        items: data,
+      };
+      }
+      async findOne(id: string):Promise<Hall | undefined> {
+        return await this.hallRepository.findOne({
+          where: {
+            id,
+          },
+          relations:{
+            building:true
+          }
+        });
+      }
 }
