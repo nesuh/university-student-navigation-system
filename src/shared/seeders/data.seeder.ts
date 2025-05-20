@@ -16,7 +16,7 @@ import {
   Shopping,
   Users,
 } from "src/db/entities";
-import { DataSource, Repository } from "typeorm";
+import { DataSource } from "typeorm";
 import { runSeeder, Seeder } from "typeorm-extension";
 import dataSource from "../typeorm/typeorm-config-helper";
 import {
@@ -43,21 +43,21 @@ export class DataSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<any> {
     await dataSource.initialize();
 
-    const userRepository: Repository<Users> = dataSource.getRepository(Users);
-    const buildingRepository: Repository<Building> = dataSource.getRepository(Building);
-    const cafeteriaRepository: Repository<Cafeteria> = dataSource.getRepository(Cafeteria);
-    const collegeRepository: Repository<College> = dataSource.getRepository(College);
-    const classesRepository: Repository<Classes> = dataSource.getRepository(Classes);
-    const facultyRepository: Repository<Faculty> = dataSource.getRepository(Faculty);
-    const departmentRepository: Repository<Department> = dataSource.getRepository(Department);
-    const scienceTypeRepository: Repository<ScienceType> = dataSource.getRepository(ScienceType);
-    const hallRepository: Repository<Hall> = dataSource.getRepository(Hall);
-    const labRepository: Repository<Lab> = dataSource.getRepository(Lab);
-    const officeRepository: Repository<Office> = dataSource.getRepository(Office);
-    const parkingRepository: Repository<Parking> = dataSource.getRepository(Parking);
-    const registrationRepository: Repository<Registration> = dataSource.getRepository(Registration);
-    const shoppingRepository: Repository<Shopping> = dataSource.getRepository(Shopping);
-    const dormitoryRepository: Repository<Dormitory> = dataSource.getRepository(Dormitory);
+    const userRepository = dataSource.getRepository(Users);
+    const buildingRepository = dataSource.getRepository(Building);
+    const cafeteriaRepository = dataSource.getRepository(Cafeteria);
+    const collegeRepository = dataSource.getRepository(College);
+    const classesRepository = dataSource.getRepository(Classes);
+    const facultyRepository = dataSource.getRepository(Faculty);
+    const departmentRepository = dataSource.getRepository(Department);
+    const scienceTypeRepository = dataSource.getRepository(ScienceType);
+    const hallRepository = dataSource.getRepository(Hall);
+    const labRepository = dataSource.getRepository(Lab);
+    const officeRepository = dataSource.getRepository(Office);
+    const parkingRepository = dataSource.getRepository(Parking);
+    const registrationRepository = dataSource.getRepository(Registration);
+    const shoppingRepository = dataSource.getRepository(Shopping);
+    const dormitoryRepository = dataSource.getRepository(Dormitory);
 
     try {
       // Seed Users
@@ -68,104 +68,170 @@ export class DataSeeder implements Seeder {
           console.warn(`User already exists: ${user.id}`);
           continue;
         }
-        user.password = this.encryptString(user.password); // Hash password
-        const userData = userRepository.create(user);
-        await userRepository.save(userData);
+        user.password = this.encryptString(user.password);
+        await userRepository.save(userRepository.create(user));
       }
 
-console.log("Seeding Buildings...");  
-await buildingRepository.upsert(buildings, {
-  skipUpdateIfNoValuesChanged: true,
-  conflictPaths: ["id"],
-});
+      // Seed Buildings
+      console.log("Seeding Buildings...");
+      for (const building of buildings) {
+        const exists = await buildingRepository.findOne({ where: { id: building.id } });
+        if (exists) {
+          console.warn(`Building already exists: ${building.id}`);
+          continue;
+        }
+        await buildingRepository.save(buildingRepository.create(building));
+      }
+
       // Seed Parkings
       console.log("Seeding Parkings...");
-      await parkingRepository.upsert(parkings, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const parking of parkings) {
+        const exists = await parkingRepository.findOne({ where: { id: parking.id } });
+        if (exists) {
+          console.warn(`Parking already exists: ${parking.id}`);
+          continue;
+        }
+        await parkingRepository.save(parkingRepository.create(parking));
+      }
+
       // Seed Science Types
       console.log("Seeding Science Types...");
-      await scienceTypeRepository.upsert(scienceTypes, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const scienceType of scienceTypes) {
+        const exists = await scienceTypeRepository.findOne({ where: { id: scienceType.id } });
+        if (exists) {
+          console.warn(`Science Type already exists: ${scienceType.id}`);
+          continue;
+        }
+        await scienceTypeRepository.save(scienceTypeRepository.create(scienceType));
+      }
 
-  // Seed College
+      // Seed Colleges
       console.log("Seeding Colleges...");
-      await collegeRepository.upsert(colleges, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const college of colleges) {
+        const exists = await collegeRepository.findOne({ where: { id: college.id } });
+        if (exists) {
+          console.warn(`College already exists: ${college.id}`);
+          continue;
+        }
+        await collegeRepository.save(collegeRepository.create(college));
+      }
+
       // Seed Faculties
       console.log("Seeding Faculties...");
-      await facultyRepository.upsert(faculties, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const faculty of faculties) {
+        const exists = await facultyRepository.findOne({ where: { id: faculty.id } });
+        if (exists) {
+          console.warn(`Faculty already exists: ${faculty.id}`);
+          continue;
+        }
+        await facultyRepository.save(facultyRepository.create(faculty));
+      }
 
       // Seed Departments
       console.log("Seeding Departments...");
-      await departmentRepository.upsert(departments, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });  // Seed Cafeterias
+      for (const department of departments) {
+        const exists = await departmentRepository.findOne({ where: { id: department.id } });
+        if (exists) {
+          console.warn(`Department already exists: ${department.id}`);
+          continue;
+        }
+        await departmentRepository.save(departmentRepository.create(department));
+      }
+
+      // Seed Cafeterias
       console.log("Seeding Cafeterias...");
-      await cafeteriaRepository.upsert(cafeterias, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const cafeteria of cafeterias) {
+        const exists = await cafeteriaRepository.findOne({ where: { id: cafeteria.id } });
+        if (exists) {
+          console.warn(`Cafeteria already exists: ${cafeteria.id}`);
+          continue;
+        }
+        await cafeteriaRepository.save(cafeteriaRepository.create(cafeteria));
+      }
 
       // Seed Shoppings
       console.log("Seeding Shoppings...");
-      await shoppingRepository.upsert(shoppings, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
-//////////////////////////error
-         // Seed Classes
+      for (const shopping of shoppings) {
+        const exists = await shoppingRepository.findOne({ where: { id: shopping.id } });
+        if (exists) {
+          console.warn(`Shopping already exists: ${shopping.id}`);
+          continue;
+        }
+        await shoppingRepository.save(shoppingRepository.create(shopping));
+      }
+
+      // Seed Classes
       console.log("Seeding Classes...");
-      await classesRepository.upsert(classes, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const classRoom of classes) {
+        const exists = await classesRepository.findOne({ where: { id: classRoom.id } });
+        if (exists) {
+          console.warn(`Class Room already exists: ${classRoom.id}`);
+          continue;
+        }
+        await classesRepository.save(classesRepository.create(classRoom));
+      }
+
       // Seed Dormitories
       console.log("Seeding Dormitories...");
-      await dormitoryRepository.upsert(dormitories, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
- // Seed Halls
+      for (const dormitory of dormitories) {
+        const exists = await dormitoryRepository.findOne({ where: { id: dormitory.id } });
+        if (exists) {
+          console.warn(`Dormitory already exists: ${dormitory.id}`);
+          continue;
+        }
+        await dormitoryRepository.save(dormitoryRepository.create(dormitory));
+      }
+
+      // Seed Halls
       console.log("Seeding Halls...");
-      await hallRepository.upsert(halls, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const hall of halls) {
+        const exists = await hallRepository.findOne({ where: { id: hall.id } });
+        if (exists) {
+          console.warn(`Hall already exists: ${hall.id}`);
+          continue;
+        }
+        await hallRepository.save(hallRepository.create(hall));
+      }
+
       // Seed Labs
       console.log("Seeding Labs...");
-      await labRepository.upsert(labs, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
-    // Seed Offices
-      console.log("Seeding Offices...");
-      await officeRepository.upsert(offices, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
-          // Seed Registrations
-      console.log("Seeding Registrations...");
-      await registrationRepository.upsert(registrations, {
-        skipUpdateIfNoValuesChanged: true,
-        conflictPaths: ["id"],
-      });
+      for (const lab of labs) {
+        const exists = await labRepository.findOne({ where: { id: lab.id } });
+        if (exists) {
+          console.warn(`Lab already exists: ${lab.id}`);
+          continue;
+        }
+        await labRepository.save(labRepository.create(lab));
+      }
 
-    
+      // Seed Offices
+      console.log("Seeding Offices...");
+      for (const office of offices) {
+        const exists = await officeRepository.findOne({ where: { id: office.id } });
+        if (exists) {
+          console.warn(`Office already exists: ${office.id}`);
+          continue;
+        }
+        await officeRepository.save(officeRepository.create(office));
+      }
+
+      // Seed Registrations
+      console.log("Seeding Registrations...");
+      for (const registration of registrations) {
+        const exists = await registrationRepository.findOne({ where: { id: registration.id } });
+        if (exists) {
+          console.warn(`Registration already exists: ${registration.id}`);
+          continue;
+        }
+        await registrationRepository.save(registrationRepository.create(registration));
+      }
 
       console.log("✅ All data seeded successfully.");
     } catch (error) {
       console.error("❌ Seeder Error:", error);
       throw error;
+    } finally {
+      await dataSource.destroy();
     }
   }
 

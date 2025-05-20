@@ -81,14 +81,14 @@ export const buildings: DeepPartial<Building>[] = [
   } ,
   {
     id: 5,
-    name: 'Tech Registration Building',
+    name: 'Socail Sceince Registration Building',
     type: BuildingType.rectangle,
     latitude: 9.03,
     longitude: 38.75,    
-    description: 'Tech Registration Building',
+    description: 'Scoail Sceince Registration Building',
   } ,{
     id:6,
-    name: 'Stundent dormitory',
+    name: 'Stundent dormitory  606',
     type: BuildingType.rectangle,
     latitude: 9.03,
     longitude: 38.75,    
@@ -96,28 +96,28 @@ export const buildings: DeepPartial<Building>[] = [
   },
   {
     id:7,
-    name: 'Stundent dormitory',
+    name: 'Stundent dormitory 607',
     type: BuildingType.rectangle,
     latitude: 9.03,
     longitude: 38.75,    
     description: 'students dormitory for Male ',
   },{
     id:8,
-    name: 'Stundent dormitory',
+    name: 'Stundent dormitory 27',
     type: BuildingType.single,
     latitude: 9.03,
     longitude: 38.75,    
     description: 'students dormitory for disapled  Male',
   },{
     id:9,
-    name: 'Stundent dormitory',
+    name: 'Stundent dormitory 45',
     type: BuildingType.rectangle,
     latitude: 9.03,
     longitude: 38.75,    
     description: 'students dormitory for Female ',
   },{
     id:10,
-    name: 'Stundent dormitory',
+    name: 'Stundent dormitory 46',
     type: BuildingType.rectangle,
     latitude: 9.03,
     longitude: 38.75,    
@@ -288,7 +288,7 @@ export const offices: DeepPartial<Office>[] = [
     id: 1,
     name: 'Dean Office',
     phoneNumber: '0960948969',
-    email: 'superAdmin@gmail.com',
+    email: 'yahyhudr@gmail.com',
     floorNumber: 1,
     roomNumber: 1,
    operationalTime: {
@@ -302,7 +302,7 @@ export const offices: DeepPartial<Office>[] = [
     id: 2,
     name: 'Assistance Proffcier Office',
     phoneNumber: '0960948969',
-    email: 'superAdmin@gmail.com',
+    email: 'baya@gmail.com',
     floorNumber: 1,
     roomNumber: 1,
    operationalTime: {
@@ -316,7 +316,7 @@ export const offices: DeepPartial<Office>[] = [
     id: 3,
     name: 'associtation Office',
     phoneNumber: '0960948969',
-    email: 'assocation@gmail.com',
+    email: 'legalme@gmail.com',
     floorNumber: 1,
     roomNumber: 1,
    operationalTime: {
@@ -451,21 +451,21 @@ export const dormitories: DeepPartial<Dormitory>[] = [
 export const classes: DeepPartial<Classes>[] = [
   {
     id: 1,
-    name: 'New Bilding class',
+    name: 'New Bilding class 101',
     building: { id: 3 },
     floorNumber: 1,
     roomType: 'Classroom',
     roomNumber: 101,
   },{
     id: 2,
-    name: 'New Bilding class',
+    name: 'New Bilding class 102',
     building: { id: 3 },
     floorNumber: 1,
     roomType: 'Classroom',
     roomNumber: 102,
   },{
     id: 3,
-    name: 'New Bilding class',
+    name: 'New Bilding class 103',
     building: { id: 3 },
     floorNumber: 1,
     roomType: 'Classroom',
@@ -473,7 +473,7 @@ export const classes: DeepPartial<Classes>[] = [
   },{
 
     id: 4,
-    name: 'New Bilding class',
+    name: 'New Bilding class 104',
     building: { id: 3 },
     floorNumber: 1,
     roomType: 'Classroom',
