@@ -15,6 +15,6 @@ export class CreateShoppingDto {
 
 export class UpdateShoppingDto extends CreateShoppingDto {
   @ApiProperty({ description: 'ID of the shopping' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

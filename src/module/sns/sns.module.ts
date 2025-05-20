@@ -10,6 +10,7 @@ import {
   Building,
   Cafeteria,
   Classes,
+  College,
   Department,
   Dormitory,
   Faculty,
@@ -47,6 +48,10 @@ import { FacultyController } from './controller/faculty.controller';
 import { FacultyService } from './service/faculty.service';
 import { ScienceTypeController } from './controller/science-type.controller';
 import { ScienceTypeService } from './service/science-type.service';
+import { FilterController } from './controller/filter.controller';
+import { FilterService } from './service/filter.service';
+import { CollegeService } from './service/college.service';
+import { CollegeController } from './controller/college.controller';
 
 @Module({
   imports: [
@@ -66,6 +71,7 @@ import { ScienceTypeService } from './service/science-type.service';
       Shopping,
       Faculty,
       ScienceType,
+      College
     ]),
   ],
   controllers: [
@@ -83,7 +89,9 @@ import { ScienceTypeService } from './service/science-type.service';
     RegistrationController,
     ShoppingController,
     FacultyController,
-    ScienceTypeController
+    ScienceTypeController,
+    FilterController,
+    CollegeController,
   ],
   providers: [
     BuildingService,
@@ -100,7 +108,9 @@ import { ScienceTypeService } from './service/science-type.service';
     RegistrationService,
     ShoppingService,
     FacultyService,
-    ScienceTypeService
+    ScienceTypeService,
+    FilterService,
+    CollegeService
   ],
   exports: [],
 })

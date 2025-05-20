@@ -34,9 +34,9 @@ export class DormitoryController extends TExtraCrudController<Dormitory>(
   
   @AllowAnonymous()
   @Get('/:id')
-  async findOne(
-      @Param('id') id: string
+  async findOneDorimitory(
+      @Param('id') id: number
   ):Promise<Dormitory | undefined> {
-      return await this.dormitoryService.findOne(id)
+      return await this.dormitoryService.findOneDorimitory(id)
   }
 }

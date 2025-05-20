@@ -1,10 +1,11 @@
-import { Controller } from '@nestjs/common';
-import { CreateBuildingDto, UpdateBuildingDto } from '../dtos';
+import { Controller, Get, Query } from '@nestjs/common';
+import { CreateBuildingDto, FilterDto, UpdateBuildingDto } from '../dtos';
 import { Building } from 'src/db/entities';
 import { BuildingService } from '../service/building.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 import { EntityCrudOptions } from 'src/shared/types/crud-option.type';
 import { TEntityCrudController } from 'src/shared/controller';
+
 
 const options: EntityCrudOptions = {
   createDto: CreateBuildingDto,
@@ -19,4 +20,16 @@ export class BuildingController extends TEntityCrudController<Building>(
   constructor(private readonly buildingService: BuildingService) {
     super(buildingService);
   }
+@Get('serarch-filter')
+@ApiQuery({
+  name: 'name',
+  required: false,
+  description: 'Search filter for building name',
+  type: String,
+})
+async filterBuilding(
+  @Query() q: FilterDto,
+){
+return await this.buildingService.searchFilter(q);
+}
 }

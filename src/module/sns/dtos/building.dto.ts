@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, IsUUID, IsEnum, IsDecimal } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID, IsEnum, IsDecimal, IsNumber } from 'class-validator';
 import { BuildingType } from 'src/shared/enums';
 
 export class CreateBuildingDto {
@@ -33,6 +33,6 @@ export class CreateBuildingDto {
 
 export class UpdateBuildingDto extends CreateBuildingDto {
   @ApiProperty({ description: 'ID of the building' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

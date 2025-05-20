@@ -33,10 +33,10 @@ export class FacultyController extends TExtraCrudController<Faculty>(options) {
     }
       @AllowAnonymous()
       @Get('/:id')
-      async findOne(
-          @Param('id') id: string
+      async findOneFaculty(
+          @Param('id') id: number
       ):Promise<Faculty | undefined> {
-          return await this.facultyService.findOne(id)
+          return await this.facultyService.findOneFaculty(id)
       }
 
 }

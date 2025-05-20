@@ -30,30 +30,30 @@ export class CreateRegistrationDto {
   @ApiProperty({
     description: 'ID of the building the registration is associated with',
   })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({
     description: 'Faculty Id',
   })
-  @IsUUID()
-  facultyId: string;
+  @IsNumber()
+  facultyId: number;
 
   @ApiProperty({
     description: 'Science Type Id',
   })
-  @IsUUID()
-  scienceTypeId: string;
+  @IsNumber()
+  scienceTypeId: number;
 
   @ApiProperty({
     description: 'Department Id',
   })
-  @IsUUID()
-  departmentId: string;
+ @IsNumber()
+  departmentId: number;
 }
 
 export class UpdateRegistrationDto extends CreateRegistrationDto {
   @ApiProperty({ description: 'ID of the registration' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

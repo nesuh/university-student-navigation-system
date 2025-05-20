@@ -4,8 +4,8 @@ import { Building } from './building.entity';
 
 @Entity('lab')
 export class Lab extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id:number;
 
   @Column({ unique: true })
   name: string;
@@ -22,10 +22,11 @@ export class Lab extends Audit {
    @Column()
    roomNumber: number;
 
-   @Column('json')
-   operationalTime: {
-     morning: { open: string; closing: string };
-     afternoon: { open: string; closing: string };
-     night: { open: string; closing: string };
-   };
+@Column({ type: 'jsonb' })
+operationalTime: {
+  morning: { open: string; closing: string };
+  afternoon: { open: string; closing: string };
+  night: { open: string; closing: string };
+};
+
 }

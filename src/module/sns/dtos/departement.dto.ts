@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
 
 export class CreateDepartmentDto {
   @ApiProperty({ description: 'Name of the department' })
@@ -8,12 +8,12 @@ export class CreateDepartmentDto {
   name: string;
 
   @ApiProperty({ description: 'Faculty ID to which the department belongs' })
-  @IsUUID()
-  facultyId: string;
+  @IsNumber()
+  facultyId: number;
 }
 
 export class UpdateDepartmentDto extends CreateDepartmentDto {
   @ApiProperty({ description: 'ID of the department' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

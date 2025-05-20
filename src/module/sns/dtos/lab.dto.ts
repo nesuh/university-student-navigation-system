@@ -20,7 +20,7 @@ export class CreateLabDto {
   name: string;
 
   @ApiProperty({ description: 'Head of the lab' })
-  @IsUUID()
+  @IsString()
   headOfLab: string;
 
   @ApiProperty({ description: 'Floor Number of the lab' })
@@ -34,8 +34,8 @@ export class CreateLabDto {
   roomNumber:number
 
   @ApiProperty({ description: 'Building the lab is located in' })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({ description: 'Operational time of the lab' })
   operationalTime: {
@@ -46,6 +46,6 @@ export class CreateLabDto {
 }
 export class UpdateLabDto extends CreateLabDto {
   @ApiProperty({ description: 'ID of the lab' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

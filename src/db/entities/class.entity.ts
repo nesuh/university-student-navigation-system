@@ -9,8 +9,8 @@ import { Building } from './building.entity';
 import { Audit } from './audit.entity';
 @Entity('classes')
 export class Classes extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({unique:true})
   name: string;

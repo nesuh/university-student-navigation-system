@@ -21,12 +21,12 @@ export class CreateDormitoryDto {
   number_of_room: number;
   
   @ApiProperty({ description: 'building Id of rooms' })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 }
 
 export class UpdateDormitoryDto extends CreateDormitoryDto {
   @ApiProperty({ description: 'ID of the dormitory' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

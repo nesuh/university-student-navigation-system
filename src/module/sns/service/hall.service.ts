@@ -47,7 +47,7 @@ export class HallService extends TExtraCrudService<Hall> {
         items: data,
       };
       }
-      async findOne(id: string):Promise<Hall | undefined> {
+      async findOneHall(id: number):Promise<Hall | undefined> {
         return await this.hallRepository.findOne({
           where: {
             id,

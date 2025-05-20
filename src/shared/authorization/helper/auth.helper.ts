@@ -67,11 +67,6 @@ export class AuthHelper {
         },
       ),
     ]);
-   console.log('Generated Access Token:', accessToken);
-console.log('Generated Refresh Token:', refreshToken);
-    console.log('JWT Access Secret:', this.configService.get<string>('JWT_ACCESS_TOKEN_SECRET'));
-    console.log('JWT Access Expiry:', this.configService.get<string>('JWT_ACCESS_TOKEN_EXPIRES'));
-    
     return { accessToken, refreshToken };
   }
 

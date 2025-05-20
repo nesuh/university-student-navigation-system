@@ -3,8 +3,8 @@ import { Audit } from './audit.entity';
 import { UserRole } from 'src/shared/enums';
 @Entity('users')
 export class Users extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   name: string;

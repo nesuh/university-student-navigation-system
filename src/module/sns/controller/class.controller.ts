@@ -30,10 +30,10 @@ export class ClassController extends TExtraCrudController<Classes>(options) {
   }
   @AllowAnonymous()
    @Get('/:id')
-    async findOne(
-        @Param('id') id: string
+    async findOneClass(
+        @Param('id') id: number
     ):Promise<Classes | undefined> {
-        return await this.classService.findOne(id)
+        return await this.classService.findOneClass(id)
     }
   
 }

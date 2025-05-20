@@ -51,7 +51,7 @@ export class OfficeService extends TExtraCrudService<Office> {
         items: data,
       };
       }
-      async findOne(id: string):Promise<Office | undefined> {
+      async findOneOfficer(id: number):Promise<Office | undefined> {
         return await this.officeRepository.findOne({
           where: {
             id,

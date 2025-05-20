@@ -6,6 +6,7 @@ import {
   IsNumber,
   IsEnum,
   IsOptional,
+  isNumber,
 } from 'class-validator'; // Adjust the import based on your file structure
 
 export class CreateClassDto {
@@ -15,8 +16,8 @@ export class CreateClassDto {
   name: string;
 
   @ApiProperty({ description: 'ID of the building the class is located in' })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({ description: 'Floor number where the class is located' })
   @IsNumber()
@@ -34,8 +35,8 @@ export class CreateClassDto {
 }
 export class UpdateClassDto extends CreateClassDto {
   @ApiProperty({ description: 'ID of the class', required: true })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 
   // Optional fields for update scenarios
   @ApiProperty({ description: 'Updated name of the class', required: false })
@@ -45,8 +46,8 @@ export class UpdateClassDto extends CreateClassDto {
 
   @ApiProperty({ description: 'Updated building ID', required: false })
   @IsOptional()
-  @IsUUID()
-  buildingId!: string;
+  @IsNumber()
+  buildingId!: number;
 
   @ApiProperty({ description: 'Updated floor number', required: false })
   @IsOptional()

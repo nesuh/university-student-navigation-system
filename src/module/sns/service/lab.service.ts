@@ -50,7 +50,7 @@ export class labService extends TExtraCrudService<Lab> {
             items: data,
           };
           }
-          async findOne(id: string):Promise<Lab | undefined> {
+          async findOneLab(id: number):Promise<Lab | undefined> {
             return await this.labRepository.findOne({
               where: {
                 id,

@@ -6,8 +6,8 @@ import { Building } from './building.entity';
 
 @Entity('dormitory')
 export class Dormitory extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ type: 'enum', enum: GenderType })
   gender: GenderType;
@@ -27,6 +27,6 @@ export class Dormitory extends Audit {
 
   @ManyToOne(() => Building, (building) => building.dormitories)
   @JoinColumn({ name: 'building_id' })
-  buildings: Building
+  building: Building
   ;
 }

@@ -3,12 +3,15 @@ import { Audit } from './audit.entity';
 
 @Entity('parking')
 export class Parking extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({unique:true})
   parkingName: string;
 
   @Column()
   capacity: number;
+  
+  @Column()  
+  description!: string; 
 }

@@ -32,9 +32,9 @@ export class LabController extends TExtraCrudController<Lab>(options) {
 
    @AllowAnonymous()
     @Get('/:id')
-      async findOne(
-          @Param('id') id: string
+      async findOneLab(
+          @Param('id') id: number
       ):Promise<Lab | undefined> {
-          return await this.labService.findOne(id)
+          return await this.labService.findOneLab(id)
       }
 }

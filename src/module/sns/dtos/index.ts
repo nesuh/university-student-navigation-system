@@ -15,3 +15,5 @@ export * from './dormitory.dto';
 export * from './departement.dto';
 export * from './science-type.dto'
 export * from './faculty.dto'
+export * from './filter.dto'
+export * from './college.dto'

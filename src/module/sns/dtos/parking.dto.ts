@@ -14,6 +14,6 @@ export class CreateParkingDto {
 
 export class UpdateParkingDto extends CreateParkingDto {
   @ApiProperty({ description: 'ID of the parking' })
-  @IsUUID()
-  id: string;
+ @IsNumber()
+  id: number;
 }

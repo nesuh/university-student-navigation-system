@@ -8,8 +8,8 @@ export class CreateHallDto {
   name: string;
 
   @ApiProperty({ description: 'Building the hall is located in' })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({ description: 'Capacity of the hall' })
   @IsNumber()
@@ -23,6 +23,6 @@ export class CreateHallDto {
 
 export class UpdateHallDto extends CreateHallDto {
   @ApiProperty({ description: 'ID of the hall' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

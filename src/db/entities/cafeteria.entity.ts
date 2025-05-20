@@ -12,8 +12,8 @@ import { CafeteriaType } from 'src/shared/enums/cafeteria_type.enum';
 
 @Entity('cafeteria')
 export class Cafeteria extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ unique: true })
   name: string;
@@ -28,7 +28,7 @@ export class Cafeteria extends Audit {
   @Column()
   capacity: number;
 
-  @Column('json')
+  @Column('jsonb')
   operationalTime: {
     morning: { open: string; closing: string };
     afternoon: { open: string; closing: string };

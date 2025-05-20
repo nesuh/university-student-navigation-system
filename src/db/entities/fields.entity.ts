@@ -4,8 +4,8 @@ import { Audit } from "./audit.entity";
 
 @Entity('field')
 export class Field extends Audit{
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({unique:true})
   name: string; // Example: "Artificial Intelligence", "Cyber Security", "Finance" choose stream

@@ -39,8 +39,8 @@ export class CreateCafeteriaDto {
   @ApiProperty({
     description: 'ID of the building the cafeteria is located in',
   })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({
     description: 'Operational times for the cafeteria',
@@ -61,8 +61,8 @@ export class CreateCafeteriaDto {
 
 export class UpdateCafeteriaDto extends CreateCafeteriaDto {
   @ApiProperty({ description: 'ID of the cafeteria' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 
   // Optional fields for update scenarios
   @ApiProperty({

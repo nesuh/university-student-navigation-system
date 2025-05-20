@@ -33,9 +33,9 @@ export class HallController extends TExtraCrudController<Hall>(options) {
 
   @AllowAnonymous()
   @Get('/:id')
-  async findOne(
-      @Param('id') id: string
+  async findOneHall(
+      @Param('id') id: number
   ):Promise<Hall | undefined> {
-      return await this.hallService.findOne(id)
+      return await this.hallService.findOneHall(id)
   }
 }

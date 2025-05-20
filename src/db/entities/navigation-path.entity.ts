@@ -4,8 +4,8 @@ import { Building } from './building.entity';
 
 @Entity('navigation_path')
 export class NavigationPath extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id:number;
 
   @ManyToOne(() => Building)
   fromBuilding: Building;

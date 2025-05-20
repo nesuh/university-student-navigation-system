@@ -33,9 +33,9 @@ export class DepartmentController extends TExtraCrudController<Department>(
       }
   @AllowAnonymous()
       @Get('/:id')
-      async findOne(
-          @Param('id') id: string
+      async findOneDepartment(
+          @Param('id') id: number
       ):Promise<Department | undefined> {
-          return await this.departmentService.findOne(id)
+          return await this.departmentService.findOneDepartment(id)
       }
 }

@@ -52,7 +52,7 @@ export class CafeteriaService extends TExtraCrudService<Cafeteria> {
         items: data,
       };
       }
-      async findOne(id: string):Promise<Cafeteria | undefined> {
+      async findOneCafteria(id: number):Promise<Cafeteria | undefined> {
         return await this.cafeteriaRepository.findOne({
           where: {
             id,

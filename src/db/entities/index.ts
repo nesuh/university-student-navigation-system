@@ -15,3 +15,4 @@ export * from './shopping.entity';
 export * from './fields.entity';
 export * from './faculty.entity';
 export * from './science-type.entity';
+export * from './college.entity';

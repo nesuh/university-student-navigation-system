@@ -9,8 +9,8 @@ import {
 
 export class CreateNavigationDto {
   @ApiProperty({ description: 'ID of the building the navigation starts from' })
-  @IsUUID()
-  fromBuildingId: string;
+  @IsNumber()
+  fromBuildingId: number;
 
   @ApiProperty({ description: 'ID of the building the navigation goes to' })
   @IsUUID()
@@ -29,6 +29,6 @@ export class CreateNavigationDto {
 
 export class UpdateNavigationDto extends CreateNavigationDto {
   @ApiProperty({ description: 'ID of the navigation record' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

@@ -4,8 +4,8 @@ import { Building } from './building.entity';
 
 @Entity('office')
 export class Office extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   name: string;
@@ -25,7 +25,7 @@ export class Office extends Audit {
   @ManyToOne(() => Building, (building) => building.offices)
   building: Building;
 
-  @Column('json')
+  @Column('jsonb')
   operationalTime: {
     morning: { open: string; closing: string };
     afternoon: { open: string; closing: string };

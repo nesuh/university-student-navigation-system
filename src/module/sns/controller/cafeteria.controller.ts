@@ -33,9 +33,9 @@ export class CafeteriaController extends TExtraCrudController<Cafeteria>(
   }
   @AllowAnonymous()
   @Get('/:id')
-  async findOne(
-      @Param('id') id: string
+  async findOneCafteria(
+      @Param('id') id: number
   ):Promise<Cafeteria | undefined> {
-      return await this.cafeteriaService.findOne(id)
+      return await this.cafeteriaService.findOneCafteria(id)
   }
 }

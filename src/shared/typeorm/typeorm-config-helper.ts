@@ -1,34 +1,37 @@
 import * as dotenv from 'dotenv';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm'; // Use correct import based on the library you're using
+import { SeederOptions } from 'typeorm-extension';
 dotenv.config({ path: '.env' });
 
-export const TypeOrmConfigHelper = {
-  DATABASE_HOST: process.env.DATABASE_HOST ?? 'localhost',
-  DATABASE_PORT: process.env.DATABASE_PORT ?? '5432',
-  DATABASE_NAME: process.env.DATABASE_NAME ?? 'sns',
-  DATABASE_USER: process.env.DATABASE_USER ?? 'postgres',
-  DATABASE_PASSWORD: process.env.DATABASE_PASSWORD ?? '0000',
-};
+const pathPrefix = ''; // Adjust for different environments
 
-const pathPrefix = process.env.NODE_ENV === 'development' ? 'src/' : 'dist/'; 
-
-export const dataSourceOptions = {
+// Define TypeORM configuration separately
+export const typeormConfig: DataSourceOptions = {
   type: 'postgres',
-  host: TypeOrmConfigHelper.DATABASE_HOST,
-  port: Number(TypeOrmConfigHelper.DATABASE_PORT),
-  database: TypeOrmConfigHelper.DATABASE_NAME,
-  username: TypeOrmConfigHelper.DATABASE_USER,
-  password: TypeOrmConfigHelper.DATABASE_PASSWORD,
-  entities: [`${pathPrefix}**/*.entity.{ts,js}`], 
-  migrations: [`${pathPrefix}db/migrations/*.{ts,js}`], 
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT),
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  schema: process.env.DATABASE_SCHEMA,
+  entities: [`${pathPrefix}dist/db/entities/**/*.entity.{ts,js}`],
+  migrations: [`${pathPrefix}dist/db/migrations/*.{ts,js}`],
+  subscribers: [`${pathPrefix}dist/db/subscribers/*.{ts,js}`],
   migrationsRun: true,
   migrationsTableName: 'typeorm_migrations',
   logger: 'advanced-console',
   logging: 'all',
   synchronize: false,
-  autoLoadEntities: true,
-} as DataSourceOptions;
+  // autoLoadEntities: true,
+};
 
-const dataSource = new DataSource(dataSourceOptions);
+const dataSource = new DataSource(typeormConfig);
+
+// Now define Seeder-related configurations separately
+export const seederConfig: SeederOptions = {
+  seeds: [`${pathPrefix}dist/db/seeders/**.seeder.{ts,js}`], // Path to your seeders
+  seedTracking: true,
+  factories: [], // Add any specific factories if needed
+};
 
 export default dataSource;

@@ -48,7 +48,7 @@ export class DepartmentService extends TExtraCrudService<Department> {
       items: data,
     };
   }
-  async findOne(id: string):Promise<Department | undefined> {
+  async findOneDepartment(id: number){
     return await this.departmentRepository.findOne({
       where: {
         id,

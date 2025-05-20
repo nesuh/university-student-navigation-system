@@ -87,7 +87,7 @@ export class RegistrationService extends TExtraCrudService<Registration> {
         };
       }
 
-      async findOne(id: string):Promise<Registration| undefined> {
+      async findOneRegistration(id: number):Promise<Registration| undefined> {
         return await this.registrationRepository.findOne({
           where: {
             id,

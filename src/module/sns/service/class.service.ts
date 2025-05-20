@@ -49,7 +49,7 @@ export class ClassService extends TExtraCrudService<Classes> {
         items: data,
       };
       }
-      async findOne(id: string):Promise<Classes | undefined> {
+      async findOneClass(id: number):Promise<Classes | undefined> {
         return await this.classRepository.findOne({
           where: {
             id,

@@ -9,8 +9,8 @@ import { Dormitory } from './dormitory.entity';
 
 @Entity('building')
 export class Building extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ unique: true })
   name: string;
@@ -43,6 +43,6 @@ export class Building extends Audit {
   @OneToMany(() => Office, (office) => office.building)
   offices: Office[];
 
-  @OneToMany(() => Dormitory, (dormitory) => dormitory.buildings) 
+  @OneToMany(() => Dormitory, (dormitory) => dormitory.building) 
   dormitories: Dormitory[];
 }

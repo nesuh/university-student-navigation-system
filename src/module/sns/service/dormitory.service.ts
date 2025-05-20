@@ -30,7 +30,7 @@ export class DormitoryService extends TExtraCrudService<Dormitory> {
           dormitory_type: body.dormitory_type,
           number_of_student: body.number_of_student,
           number_of_room: body.number_of_room,
-          buildings: building
+          building: building
               });
     
         await this.dormitoryRepository.save(dormitory);
@@ -40,7 +40,7 @@ export class DormitoryService extends TExtraCrudService<Dormitory> {
       async findAll(){
           const data = await this.dormitoryRepository.find({
             relations:{
-              buildings:true
+              building:true
             }
       })
       return {
@@ -48,13 +48,13 @@ export class DormitoryService extends TExtraCrudService<Dormitory> {
         items: data,
       };
       }
-      async findOne(id: string):Promise<Dormitory | undefined> {
+      async findOneDorimitory(id: number):Promise<Dormitory | undefined> {
         return await this.dormitoryRepository.findOne({
           where: {
             id,
           },
           relations:{
-            buildings:true
+            building:true
           }
         });
       }

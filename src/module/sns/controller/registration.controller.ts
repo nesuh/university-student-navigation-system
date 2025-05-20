@@ -29,10 +29,10 @@ export class RegistrationController extends TExtraCrudController<Registration>(
   
   @AllowAnonymous()
   @Get('secfic-registration/:id')
-  async findOne(
-      @Param('id') id: string
+  async findOneRegistration(
+      @Param('id') id: number
   ):Promise<Registration | undefined> {
-      return await this.registrationService.findOne(id)
+      return await this.registrationService.findOneRegistration(id)
   }
 
   @AllowAnonymous()

@@ -5,6 +5,7 @@ import { SNSModule } from './module/sns/sns.module';
 import { TypeOrmConfigService } from './shared/typeorm/typeorm.service';
 import { AuthorizationModule } from './shared/authorization';
 import { ConfigModule } from '@nestjs/config';
+// import { DataSeeder } from './shared/seeders/data.seeder';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -15,6 +16,8 @@ import { ConfigModule } from '@nestjs/config';
     SNSModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    // DataSeeder,
+  ],
 })
 export class AppModule {}

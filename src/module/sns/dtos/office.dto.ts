@@ -26,8 +26,8 @@ export class CreateOfficeDto {
   email: string;
 
   @ApiProperty({ description: 'Building where the office is located' })
-  @IsUUID()
-  buildingId: string;
+  @IsNumber()
+  buildingId: number;
 
   @ApiProperty({description:'Floor Number of the office'})
   @IsNumber()
@@ -53,6 +53,6 @@ export class CreateOfficeDto {
 
 export class UpdateOfficeDto extends CreateOfficeDto {
   @ApiProperty({ description: 'ID of the office' })
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  id: number;
 }

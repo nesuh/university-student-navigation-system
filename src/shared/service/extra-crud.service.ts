@@ -21,12 +21,14 @@ export class TExtraCrudService<T extends ObjectLiteral> {
     };
   }
 
-  async findOne(id: string):Promise<T | undefined> {
-    return await this.repository.findOne({
-      where: {
-        id,
-      } as any,
-    });
+  async findOne(id: string): Promise<T | undefined> {
+    return (
+      (await this.repository.findOne({
+        where: {
+          id,
+        } as any,
+      })) || undefined
+    );
   }
 
   async create(itemData: any) {

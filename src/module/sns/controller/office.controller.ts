@@ -33,9 +33,9 @@ export class OfficeController extends TExtraCrudController<Office>(options) {
 
   @AllowAnonymous()
     @Get('/:id')
-    async findOne(
-        @Param('id') id: string
+    async findOneOfficer(
+        @Param('id') id: number
     ):Promise<Office | undefined> {
-        return await this.officeService.findOne(id)
+        return await this.officeService.findOneOfficer(id)
     }
 }

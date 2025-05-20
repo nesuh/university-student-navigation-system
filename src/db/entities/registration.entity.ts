@@ -12,8 +12,8 @@ import { Department } from './department.entity';
 import { ScienceType } from './science-type.entity';
 @Entity('registration')
 export class Registration extends Audit {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id:number;
 
   @Column()
   name: string;
