@@ -29,6 +29,7 @@ export class OfficeService extends TExtraCrudService<Office> {
         const office = this.officeRepository.create({
           name: body.name,
           phoneNumber: body.phoneNumber,
+          fullName:body.fullName,
           email: body.email,
           floorNumber: body.floorNumber,
           roomNumber: body.roomNumber,

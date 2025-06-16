@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Department, Faculty} from 'src/db/entities';
+import { College, Department} from 'src/db/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TExtraCrudService } from 'src/shared/service';
 import { CreateDepartmentDto } from '../dtos';
@@ -11,25 +11,24 @@ export class DepartmentService extends TExtraCrudService<Department> {
     @InjectRepository(Department)
     private readonly departmentRepository: Repository<Department>,
 
-    @InjectRepository(Faculty)
-    private readonly facultyRepository: Repository<Faculty>,
+    @InjectRepository(College)
+    private readonly CollegeRepository: Repository<College>,
   ) {
     super(departmentRepository,'id');
   }
   
   async registerDepartment(body: CreateDepartmentDto) {
 
-    const faculty = await this.facultyRepository.findOne({
+    const college = await this.CollegeRepository.findOne({
       where:{
-        id:body.facultyId}});
+        id:body.collegeId}});
 
-        if(!faculty){
-          throw new BadRequestException('Faculty not found');
+        if(!college){
+          throw new BadRequestException('College not found');
         }
 
         const department = this.departmentRepository.create({
           name: body.name,
-          faculty
         });
     
         await this.departmentRepository.save(department);
@@ -40,7 +39,7 @@ export class DepartmentService extends TExtraCrudService<Department> {
   async findAll(){
     const data = await this.departmentRepository.find({
       relations:{
-        faculty:true
+        college:true
       }
     });
     return {
@@ -54,7 +53,7 @@ export class DepartmentService extends TExtraCrudService<Department> {
         id,
       },
       relations:{
-        faculty:true
+        college:true
       }
     });
   }

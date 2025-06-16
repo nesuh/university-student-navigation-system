@@ -6,6 +6,7 @@ import { Registration } from './registration.entity';
 import { Cafeteria } from './cafeteria.entity';
 import { Office } from './office.entity';
 import { Dormitory } from './dormitory.entity';
+import { Lab } from './lab.entity';
 
 @Entity('building')
 export class Building extends Audit {
@@ -14,7 +15,12 @@ export class Building extends Audit {
 
   @Column({ unique: true })
   name: string;
-
+  
+  @Column(
+    // {unique:true}
+  )
+  block: number;
+  
   @Column({
     type: 'enum',
     enum: BuildingType,
@@ -45,4 +51,8 @@ export class Building extends Audit {
 
   @OneToMany(() => Dormitory, (dormitory) => dormitory.building) 
   dormitories: Dormitory[];
+
+  @OneToMany(() => Lab, (lab) => lab.building)
+  labs: Lab[];
+  
 }

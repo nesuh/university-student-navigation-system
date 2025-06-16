@@ -17,6 +17,10 @@ export class CreateOfficeDto {
   @IsString()
   name: string;
 
+  @ApiProperty({description:'Full Name '})
+  @IsString()
+  fullName: string;
+
   @ApiProperty({ description: 'Phone number of the office' })
   @IsString()
   phoneNumber: string;

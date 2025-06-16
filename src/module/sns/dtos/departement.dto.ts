@@ -7,9 +7,9 @@ export class CreateDepartmentDto {
   @IsString()
   name: string;
 
-  @ApiProperty({ description: 'Faculty ID to which the department belongs' })
+  @ApiProperty({ description: 'College ID to which the department belongs' })
   @IsNumber()
-  facultyId: number;
+  collegeId: number;
 }
 
 export class UpdateDepartmentDto extends CreateDepartmentDto {

@@ -7,14 +7,13 @@ import { NavigationPathService } from './service/navigation-path.service';
 import { DepartmentService } from './service/department.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
+  AdministrativeUnit,
   Building,
   Cafeteria,
   Classes,
   College,
   Department,
   Dormitory,
-  Faculty,
-  Field,
   Hall,
   Lab,
   NavigationPath,
@@ -27,7 +26,6 @@ import {
 import { CafeteriaController } from './controller/cafeteria.controller';
 import { ClassController } from './controller/class.controller';
 import { DormitoryController } from './controller/dormitory.controller';
-import { FieldController } from './controller/field.controller';
 import { HallController } from './controller/hall.controller';
 import { LabController } from './controller/lab.controller';
 import { OfficeController } from './controller/office.controller';
@@ -37,15 +35,14 @@ import { ShoppingController } from './controller/shopping.controller';
 import { CafeteriaService } from './service/cafeteria.service';
 import { ClassService } from './service/class.service';
 import { DormitoryService } from './service/dormitory.service';
-import { FieldService } from './service/field.service';
 import { HallService } from './service/hall.service';
 import { labService } from './service/lab.service';
 import { OfficeService } from './service/office.service';
 import { ParkingService } from './service/parking.service';
 import { RegistrationService } from './service/registration.service';
 import { ShoppingService } from './service/shopping.service';
-import { FacultyController } from './controller/faculty.controller';
-import { FacultyService } from './service/faculty.service';
+import { AdminstrativeUnitController,  } from './controller/adminstrative-unit.controller';
+import { AdminstrativeUnitService, } from './service/adminstrative-unit.service';
 import { ScienceTypeController } from './controller/science-type.controller';
 import { ScienceTypeService } from './service/science-type.service';
 import { FilterController } from './controller/filter.controller';
@@ -62,16 +59,15 @@ import { CollegeController } from './controller/college.controller';
       Dormitory,
       Cafeteria,
       Classes,
-      Field,
       Hall,
       Lab,
       Office,
       Parking,
       Registration,
       Shopping,
-      Faculty,
       ScienceType,
-      College
+      College,
+      AdministrativeUnit,
     ]),
   ],
   controllers: [
@@ -81,14 +77,12 @@ import { CollegeController } from './controller/college.controller';
     CafeteriaController,
     ClassController,
     DormitoryController,
-    FieldController,
     HallController,
     LabController,
     OfficeController,
     ParkingController,
     RegistrationController,
     ShoppingController,
-    FacultyController,
     ScienceTypeController,
     FilterController,
     CollegeController,
@@ -100,17 +94,16 @@ import { CollegeController } from './controller/college.controller';
     CafeteriaService,
     ClassService,
     DormitoryService,
-    FieldService,
     HallService,
     labService,
     OfficeService,
     ParkingService,
     RegistrationService,
     ShoppingService,
-    FacultyService,
     ScienceTypeService,
     FilterService,
-    CollegeService
+    CollegeService,
+  
   ],
   exports: [],
 })

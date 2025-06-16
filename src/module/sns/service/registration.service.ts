@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Building, Department, Faculty, Registration, ScienceType } from 'src/db/entities';
+import { Building, Department, Registration, ScienceType } from 'src/db/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TExtraCrudService } from 'src/shared/service';
 import { CreateRegistrationDto } from '../dtos';
@@ -14,8 +14,6 @@ export class RegistrationService extends TExtraCrudService<Registration> {
     private readonly buildingRepository: Repository<Building>,
     @InjectRepository(Department)
     private readonly departmentRepository: Repository<Department>,
-    @InjectRepository(Faculty)
-    private readonly facultyRepository: Repository<Faculty>,
     @InjectRepository(ScienceType)
     private readonly scienceTypeRepository: Repository<ScienceType>,
   ) {
@@ -33,9 +31,7 @@ export class RegistrationService extends TExtraCrudService<Registration> {
           where:{
             id:body.departmentId}})
         ,
-        this.facultyRepository.findOne({
-          where:{
-            id:body.facultyId}})
+
         ,
         this.scienceTypeRepository.findOne({
           where:{
@@ -64,7 +60,6 @@ export class RegistrationService extends TExtraCrudService<Registration> {
           roomNumber: body.roomNumber,
           building,
           department,
-          faculty,
           scienceType
         });
     
@@ -77,7 +72,6 @@ export class RegistrationService extends TExtraCrudService<Registration> {
           relations:{
             building:true,
             department:true,
-            faculty:true, 
             scienceType:true
           },
         });
@@ -95,7 +89,6 @@ export class RegistrationService extends TExtraCrudService<Registration> {
           relations:{
      building:true,
      department:true,
-     faculty:true,
      scienceType:true,
           }
         });

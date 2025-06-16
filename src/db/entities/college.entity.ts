@@ -8,24 +8,25 @@ import {
   OneToMany,
 } from 'typeorm';
 import { ScienceType } from './science-type.entity';
-import { Faculty } from './faculty.entity';
 import { Department } from './department.entity';
 import { Audit } from './audit.entity';
+import { collegesEnum } from 'src/shared/enums';
 
 @Entity()
 export class College extends Audit {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
+  @Column({
+    unique: true,
+    type: 'enum',
+    enum: collegesEnum,
+  })
+  name: collegesEnum;
 
   @ManyToOne(() => ScienceType, (scienceType) => scienceType.colleges)
   @JoinColumn({ name: 'science_type_id' })
   scienceType: ScienceType;
-
-  @OneToMany(() => Faculty, (facultie) => facultie.college)
-  faculties: Faculty[];
 
   @OneToMany(() => Department, (department) => department.college)
   departments: Department[];

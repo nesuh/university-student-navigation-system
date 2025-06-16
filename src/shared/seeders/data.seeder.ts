@@ -6,9 +6,9 @@ import {
   College,
   Department,
   Dormitory,
-  Faculty,
   Hall,
   Lab,
+  Library,
   Office,
   Parking,
   Registration,
@@ -20,15 +20,16 @@ import { DataSource } from "typeorm";
 import { runSeeder, Seeder } from "typeorm-extension";
 import dataSource from "../typeorm/typeorm-config-helper";
 import {
+  adminstrativeUnits,
   buildings,
   cafeterias,
   classes,
   colleges,
   departments,
   dormitories,
-  faculties,
   halls,
   labs,
+  libraries,
   offices,
   parkings,
   registrations,
@@ -37,6 +38,7 @@ import {
   users,
 } from "./seed-data";
 import * as bcrypt from "bcrypt";
+import { AdministrativeUnit } from "src/db/entities/adminstrative-unit.entity";
 
 @Injectable()
 export class DataSeeder implements Seeder {
@@ -48,7 +50,6 @@ export class DataSeeder implements Seeder {
     const cafeteriaRepository = dataSource.getRepository(Cafeteria);
     const collegeRepository = dataSource.getRepository(College);
     const classesRepository = dataSource.getRepository(Classes);
-    const facultyRepository = dataSource.getRepository(Faculty);
     const departmentRepository = dataSource.getRepository(Department);
     const scienceTypeRepository = dataSource.getRepository(ScienceType);
     const hallRepository = dataSource.getRepository(Hall);
@@ -58,6 +59,8 @@ export class DataSeeder implements Seeder {
     const registrationRepository = dataSource.getRepository(Registration);
     const shoppingRepository = dataSource.getRepository(Shopping);
     const dormitoryRepository = dataSource.getRepository(Dormitory);
+    const admisntrativeUnitRepository = dataSource.getRepository(AdministrativeUnit);
+    const libraryRepository = dataSource.getRepository(Library);
 
     try {
       // Seed Users
@@ -116,16 +119,15 @@ export class DataSeeder implements Seeder {
         await collegeRepository.save(collegeRepository.create(college));
       }
 
-      // Seed Faculties
-      console.log("Seeding Faculties...");
-      for (const faculty of faculties) {
-        const exists = await facultyRepository.findOne({ where: { id: faculty.id } });
-        if (exists) {
-          console.warn(`Faculty already exists: ${faculty.id}`);
-          continue;
-        }
-        await facultyRepository.save(facultyRepository.create(faculty));
-      }
+console.log("Seeding Admisntrative Units...");
+for (const admisntrativeUnit of adminstrativeUnits) {
+  const exists = await admisntrativeUnitRepository.findOne({ where: { id: admisntrativeUnit.id } });
+  if (exists) {
+    console.warn(`Admisntrative Unit already exists: ${admisntrativeUnit.id}`);
+    continue;
+  }
+  await admisntrativeUnitRepository.save(admisntrativeUnitRepository.create(admisntrativeUnit));
+}         
 
       // Seed Departments
       console.log("Seeding Departments...");
@@ -225,6 +227,16 @@ export class DataSeeder implements Seeder {
         }
         await registrationRepository.save(registrationRepository.create(registration));
       }
+      //seed Library
+      console.log("Seeding Library...");
+      for (const library of libraries) {
+        const exists = await libraryRepository.findOne({ where: { id: library.id } });
+        if (exists) {
+          console.warn(`Library already exists: ${library.id}`);
+          continue;
+        }
+        await libraryRepository.save(libraryRepository.create(library));
+      } 
 
       console.log("✅ All data seeded successfully.");
     } catch (error) {

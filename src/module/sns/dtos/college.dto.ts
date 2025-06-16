@@ -1,11 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
+import { collegesEnum } from 'src/shared/enums';
 
 export class CreateCollegeDto {
-  @ApiProperty({ description: 'Name of the college' })
-  @IsNotEmpty()
-  @IsString()
-  name: string ;
+  @ApiProperty({ 
+     description: 'Name of College', 
+     enum: collegesEnum, 
+     enumName: 'CollegeEnum'  })
+  @IsEnum(collegesEnum)
+  name: collegesEnum;
 
   @ApiProperty({ description: 'ID of the science type this college belongs to' })
   @IsNumber()

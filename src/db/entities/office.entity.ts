@@ -10,6 +10,9 @@ export class Office extends Audit {
   @Column()
   name: string;
 
+  @Column()
+  fullName:string;
+
   @Column({ type: 'varchar', length: 20 })
   phoneNumber: string;
 

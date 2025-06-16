@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsObject, IsString, IsNumber } from 'class-validator';
 export class FilterQueryDto {
   @IsOptional()
@@ -17,13 +18,30 @@ export class FilterQueryDto {
   limit?: number;
 }
 export class FilterDto {
+  @ApiProperty({description:'Category of the building'})
+  // @IsOptional()
+  @IsString()
+  category: 'Building' | 'Lab' | 'Office' | 'Dormitory' | 'Cafeteria' | 'Classroom' | 'Registration' | 'College' | 'Department' | 'Library';
+
+  @ApiProperty({description:'Building Name'})
   @IsOptional()
   @IsString()
   name?: string;
 
+  @ApiProperty({description:'Building Block'})
   @IsOptional()
-  @IsString()
-  status?: string;
+  @IsNumber()
+  block?:number
+
+  // @IsOptional()
+  // @IsString()
+  // status?: string;
 
   // Add more filters as needed
+}
+export class FilterByCatagoryDto {
+  @IsOptional()
+  @IsString()
+  CatagoryName?: string;
+
 }
