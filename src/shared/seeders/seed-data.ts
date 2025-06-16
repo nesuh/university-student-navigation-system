@@ -172,14 +172,16 @@ export const buildings: DeepPartial<Building>[] = [
     },
     {
       id:15,
-      name:BuildingType.single,
+      name: 'Building 606',
+      type:BuildingType.single,
       block:606,
       latitude: 9.03,
       longitude: 38.75,    
       description: 'IT ,SW,CE lab Building ',
     },{
       id:16,
-      name:BuildingType.single,
+      name: 'Building 605',
+      type:BuildingType.single,
       block:605,
       latitude:10.1,
       longitude:39.1,
@@ -402,7 +404,7 @@ export const labs: DeepPartial<Lab>[] = [
     id: 1,
     name: 'AI Lab',
     headOfLab: 'Markos Abebe',
-    building: { id: 606 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 101,
     operationalTime: {
@@ -414,7 +416,7 @@ export const labs: DeepPartial<Lab>[] = [
    id: 2,
     name: ' Lab 1',
     headOfLab: 'Mr kasaya worku',
-    building: { id: 606 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 102,
     operationalTime: {
@@ -427,7 +429,7 @@ export const labs: DeepPartial<Lab>[] = [
    id: 3,
     name: ' Lab 2',
     headOfLab: 'Mr. Melkamu Abata',
-    building: { id: 1 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 104,
     operationalTime: {
@@ -440,7 +442,7 @@ export const labs: DeepPartial<Lab>[] = [
    id: 4,
     name: ' Lab 3',
     headOfLab: 'Mr. Yontanae Awoka',
-    building: { id: 1 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 103,
     operationalTime: {
@@ -453,7 +455,7 @@ export const labs: DeepPartial<Lab>[] = [
    id: 5,
     name: ' Lab 4',
     headOfLab: 'w.r Mentwabe Bahilue',
-    building: { id: 1 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 105,
     operationalTime: {
@@ -466,7 +468,7 @@ export const labs: DeepPartial<Lab>[] = [
    id: 6,
     name: ' Lab 5',
     headOfLab: 'w.r  Selamawete Anmawe',
-    building: { id: 1 },
+    building: { id: 15 },
     floorNumber: 1,
     roomNumber: 110,
     operationalTime: {
@@ -489,7 +491,7 @@ export const offices: DeepPartial<Office>[] = [
       morning: { open: '09:00', closing: '17:00' },
       afternoon: { open: '09:00', closing: '17:00' },
     },
-    building: { id: 706},
+    building: { id: 13},
 
   },
   {
@@ -504,7 +506,7 @@ export const offices: DeepPartial<Office>[] = [
       morning: { open: '09:00', closing: '17:00' },
       afternoon: { open: '09:00', closing: '17:00' },
     },
-    building: { id: 706 },
+    building: { id: 13 },
 
   },  
   {
@@ -519,7 +521,7 @@ export const offices: DeepPartial<Office>[] = [
       morning: { open: '09:00', closing: '17:00' },
       afternoon: { open: '09:00', closing: '17:00' },
     },
-    building: { id: 706 },
+    building: { id: 13 },
 
   },{
     id: 3,
@@ -533,7 +535,7 @@ export const offices: DeepPartial<Office>[] = [
       morning: { open: '09:00', closing: '17:00' },
       afternoon: { open: '09:00', closing: '17:00' },
     },
-    building: { id: 706 }, 
+    building: { id: 13 }, 
   }
 ];
 

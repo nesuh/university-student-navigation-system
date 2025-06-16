@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Audit } from './audit.entity';
 import { Building } from './building.entity';
 
-@Entity('lab')
+@Entity('Library')
 export class Library extends Audit {
   @PrimaryGeneratedColumn()
   id:number;

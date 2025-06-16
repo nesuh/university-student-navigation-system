@@ -9,7 +9,6 @@ export class Lab extends Audit {
 
   @Column({ unique: true })
   name: string;
-
   @Column()
   headOfLab: string ;
 

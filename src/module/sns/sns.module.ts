@@ -16,6 +16,7 @@ import {
   Dormitory,
   Hall,
   Lab,
+  Library,
   NavigationPath,
   Office,
   Parking,
@@ -49,6 +50,8 @@ import { FilterController } from './controller/filter.controller';
 import { FilterService } from './service/filter.service';
 import { CollegeService } from './service/college.service';
 import { CollegeController } from './controller/college.controller';
+import { LibraryController } from './controller/library.controller';
+import { LibraryService } from './service/library.service';
 
 @Module({
   imports: [
@@ -68,6 +71,7 @@ import { CollegeController } from './controller/college.controller';
       ScienceType,
       College,
       AdministrativeUnit,
+      Library,
     ]),
   ],
   controllers: [
@@ -86,6 +90,7 @@ import { CollegeController } from './controller/college.controller';
     ScienceTypeController,
     FilterController,
     CollegeController,
+    LibraryController,
   ],
   providers: [
     BuildingService,
@@ -103,6 +108,7 @@ import { CollegeController } from './controller/college.controller';
     ScienceTypeService,
     FilterService,
     CollegeService,
+    LibraryService,
   
   ],
   exports: [],
